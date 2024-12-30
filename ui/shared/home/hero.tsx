@@ -4,19 +4,26 @@ import HeroItem from "./item";
 import useStats from "@/hooks/stats/useStats";
 import ReactApexChart from "react-apexcharts";
 import { ApexOptions } from "apexcharts";
+import useStatsChartTxs from "@/hooks/stats/useStatsChartTxs";
 
 export default function HeroSection() {
   const { stats, handleFetchStats, isLoading } = useStats();
-  const [charts, setCharts] = React.useState<ApexOptions>({
+  const {
+    handleFetchChartTxs,
+    labels,
+    transactionCounts,
+    isLoading: isChartLoading,
+  } = useStatsChartTxs();
+
+  const chartOptions: ApexOptions = {
     series: [
       {
         name: "TRANSACTIONS",
-        data: [0, 20, 0, 300, 20, 0, 90, 100, 300, 500, 29, 84, 43],
+        data: transactionCounts,
       },
     ],
     chart: {
       type: "area",
-      height: 350,
       zoom: {
         enabled: false,
       },
@@ -31,21 +38,7 @@ export default function HeroSection() {
     stroke: {
       curve: "smooth",
     },
-    labels: [
-      "2023-01-01",
-      "2023-01-02",
-      "2023-01-03",
-      "2023-01-04",
-      "2023-01-05",
-      "2023-01-06",
-      "2023-01-07",
-      "2023-01-08",
-      "2023-01-09",
-      "2023-01-10",
-      "2023-01-11",
-      "2023-01-12",
-      "2023-01-13",
-    ],
+    labels: labels,
     xaxis: {
       type: "datetime",
       labels: {
@@ -64,11 +57,12 @@ export default function HeroSection() {
     grid: {
       show: false,
     },
-  });
+  };
 
   useEffect(() => {
     handleFetchStats();
-  }, [handleFetchStats]);
+    handleFetchChartTxs();
+  }, [handleFetchStats, handleFetchChartTxs]);
 
   return (
     <div className="flex flex-row gap-2 w-full">
@@ -101,15 +95,17 @@ export default function HeroSection() {
         </div>
       </Card>
       <Card title="Daily Transactions" className="w-full">
-        <ReactApexChart
-          options={charts}
-          series={charts.series}
-          type={"area"}
-          height={200}
-        />
-        {/* <div className="flex flex-col w-full h-full justify-center items-center">
-          <p>No Data</p>
-        </div> */}
+        {isChartLoading ? (
+          <div className="flex flex-col w-full h-full justify-center items-center">
+            <p>No Data</p>
+          </div>
+        ) : (
+          <ReactApexChart
+            options={chartOptions}
+            series={chartOptions.series}
+            height={180}
+          />
+        )}
       </Card>
     </div>
   );
