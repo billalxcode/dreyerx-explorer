@@ -3,6 +3,8 @@ import { useState } from "react";
 import Container from "@/ui/components/container/container";
 import SearchBar from "@/ui/components/searchbar/searchbar";
 import Header from "@/ui/shared/header/header";
+import HeroSection from "@/ui/shared/home/hero";
+import HomeWrapper from "@/ui/shared/home/wrapper";
 
 export default function Home() {
   const [glowPosition, setGlowPosition] = useState({ x: 0, y: 0 });
@@ -30,6 +32,10 @@ export default function Home() {
 
       <Container>
         <SearchBar />
+
+        <HeroSection />
+        
+        <HomeWrapper />
       </Container>
     </div>
   );
