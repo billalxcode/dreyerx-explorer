@@ -1,34 +1,34 @@
-import { HTMLAttributeAnchorTarget } from "react"
+import { HTMLAttributeAnchorTarget } from 'react';
 
 export type NavigationTypes = {
-    name: string,
-    link: string,
-    target?: HTMLAttributeAnchorTarget
-}
+    name: string;
+    link: string;
+    target?: HTMLAttributeAnchorTarget;
+};
 
 export const navigations: NavigationTypes[] = [
     {
-        name: "Home",
-        link: "/"
+        name: 'Home',
+        link: '/',
     },
     {
-        name: "Transactions",
-        link: "/txs"
+        name: 'Transactions',
+        link: '/txs',
     },
     {
-        name: "Blocks",
-        link: "/blocks"
+        name: 'Blocks',
+        link: '/blocks',
     },
     {
-        name: "Contracts",
-        link: "/contracts"
+        name: 'Contracts',
+        link: '/contracts',
     },
     {
-        name: "Stats",
-        link: "/stats"
+        name: 'Stats',
+        link: '/stats',
     },
     {
-        name: "Apps",
-        link: "/apps"
-    }
-]
+        name: 'Apps',
+        link: '/apps',
+    },
+];

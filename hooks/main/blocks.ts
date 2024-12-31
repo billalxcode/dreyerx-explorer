@@ -1,5 +1,5 @@
-import { get_api_url } from "@/config/api";
-import { useCallback, useState } from "react";
+import { get_api_url } from '@/config/api';
+import { useCallback, useState } from 'react';
 
 export interface Miner {
     ens_domain_name: string | null;
@@ -49,25 +49,27 @@ export default function useMainBlocks() {
     const [isLoading, setIsLoading] = useState<boolean>(true);
 
     const handleFetchBlocks = useCallback(async () => {
-        setIsLoading(true)
-        const url = get_api_url("/v2/main-page/blocks");
+        setIsLoading(true);
+        const url = get_api_url('/v2/main-page/blocks');
 
         fetch(url, {
-            method: "GET",
+            method: 'GET',
             headers: {
-                "accept": "application/json",
+                accept: 'application/json',
             },
-        }).then(async (response) => {
-            const response_json = await response.json()
-            setBlocks(response_json)
-        }).finally(() => {
-            setIsLoading(false)
-        });
-    }, [])
+        })
+            .then(async (response) => {
+                const response_json = await response.json();
+                setBlocks(response_json);
+            })
+            .finally(() => {
+                setIsLoading(false);
+            });
+    }, []);
 
     return {
         blocks,
         isLoading,
-        handleFetchBlocks
-    }
+        handleFetchBlocks,
+    };
 }

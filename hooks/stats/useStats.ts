@@ -1,5 +1,5 @@
-import { get_api_url } from "@/config/api";
-import { useCallback, useState } from "react";
+import { get_api_url } from '@/config/api';
+import { useCallback, useState } from 'react';
 
 export type Stats = {
     average_block_time: number;
@@ -25,33 +25,34 @@ export type Stats = {
     total_transactions: string;
     transactions_today: string;
     tvl: number | null;
-}
+};
 
 export default function useStats() {
     const [stats, setStats] = useState<Stats | null>(null);
     const [isLoading, setIsLoading] = useState<boolean>(true);
 
     const handleFetchStats = useCallback(() => {
-        setIsLoading(true)
-        const url = get_api_url("/v2/stats");
+        setIsLoading(true);
+        const url = get_api_url('/v2/stats');
 
         fetch(url, {
-            method: "GET",
+            method: 'GET',
             headers: {
-                "accept": "application/json",
+                accept: 'application/json',
             },
-        }).then(async (response) => {
-            const response_json = await response.json()
-            setStats(response_json)
-        }).finally(() => {
-            setIsLoading(false)
-        });
-        
-    }, [])
+        })
+            .then(async (response) => {
+                const response_json = await response.json();
+                setStats(response_json);
+            })
+            .finally(() => {
+                setIsLoading(false);
+            });
+    }, []);
 
     return {
         stats,
         isLoading,
-        handleFetchStats
-    }
+        handleFetchStats,
+    };
 }
