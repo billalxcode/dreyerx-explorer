@@ -19,7 +19,7 @@ export default function BlocksItem(props: { block: Block }) {
             <div className="flex flex-col gap-1 mt-2">
                 <div className="flex justify-between items-center">
                     <h3 className="text-sm font-semibold">Validator: </h3>
-                    <p className="text-xs">
+                    <p className="text-xs text-text-primary font-semibold">
                         {shortenString(props.block.miner.hash, 5)}
                     </p>
                 </div>
