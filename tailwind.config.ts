@@ -13,6 +13,9 @@ export default {
         background: "var(--background)",
         foreground: "var(--foreground)",
 
+        text: {
+          primary: "rgba(195, 0, 225, 1)"
+        },
         container: {
           default: "rgba(255, 255, 255, 0.1)",
           hover: "rgba(255, 255, 255, 0.2)",
