@@ -5,6 +5,7 @@ import useStats from "@/hooks/stats/useStats";
 import ReactApexChart from "react-apexcharts";
 import { ApexOptions } from "apexcharts";
 import useStatsChartTxs from "@/hooks/stats/useStatsChartTxs";
+import CardEmptyData from "@/ui/components/card/empty";
 
 export default function HeroSection() {
   const { stats, handleFetchStats, isLoading } = useStats();
@@ -96,9 +97,7 @@ export default function HeroSection() {
       </Card>
       <Card title="Daily Transactions" className="w-full">
         {isChartLoading ? (
-          <div className="flex flex-col w-full h-full justify-center items-center">
-            <p>No Data</p>
-          </div>
+          <CardEmptyData />
         ) : (
           <ReactApexChart
             options={chartOptions}
