@@ -6,7 +6,9 @@
         "dev": "next dev --turbopack",
         "build": "next build",
         "start": "next start",
-        "lint": "next lint"
+        "lint": "next lint",
+        "format:write": "prettier --write .",
+        "format:check": "prettier --check ."
     },
     "dependencies": {
         "apexcharts": "^4.3.0",
