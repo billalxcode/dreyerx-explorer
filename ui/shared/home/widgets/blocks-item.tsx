@@ -9,7 +9,7 @@ export default function BlocksItem(props: { block: Block }) {
         <Card
             title={`#${props.block.height.toString()}`}
             href={`/block/${props.block.height}`}
-            className='cursor-pointer hover:border-border-hover'
+            className="cursor-pointer hover:border-border-hover"
             toolbar={
                 <h4 className="text-sm font-semibold">
                     {formatDistance(props.block.timestamp, Date.now())}
