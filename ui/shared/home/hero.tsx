@@ -38,6 +38,7 @@ export default function HeroSection() {
         },
         stroke: {
             curve: 'smooth',
+            colors: ['#FBD2B2'], // Ubah warna garis di sini
         },
         labels: labels,
         xaxis: {
