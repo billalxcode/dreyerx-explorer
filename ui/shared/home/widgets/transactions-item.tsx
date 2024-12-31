@@ -1,12 +1,36 @@
 import { Transaction } from '@/hooks/main/transactions';
 import Card from '@/ui/components/card/card';
 import { shortenString } from '@/utils/strings';
+import { formatDistance } from 'date-fns';
 import React from 'react';
 
 export default function TransactionItem(props: { transaction: Transaction }) {
+    console.log(props.transaction)
     return (
-        <Card title={`${shortenString(props.transaction.hash, 10)}`}>
-            <p>Hello World</p>
+        <Card
+            title={`${shortenString(props.transaction.hash, 10)}`}
+            toolbar={
+                <h4 className="text-sm font-semibold">
+                    {formatDistance(props.transaction.timestamp, Date.now())}
+                </h4>
+            }
+        >
+            <div className="flex flex-col gap-2">
+                <div className="flex gap-4 justify-between">
+                    <div className="flex gap-2">
+                        <h4 className="text-sm font-semibold">From:</h4>
+                        <p className="text-sm text-text-primary font-semibold">{shortenString(props.transaction.from.hash, 10)}</p>
+                    </div>
+                    <div className="flex gap-2 justify-self-start mr-auto">
+                        <h4 className="text-sm font-semibold">To:</h4>
+                        <p className="text-sm text-text-primary font-semibold">{props.transaction.transaction_types.includes("contract_creation") ? "Contract Creation" : shortenString(props.transaction.to.hash, 10)}</p>
+                    </div>
+                    <div className="flex gap-2 bg-container-default px-4 p-1 rounded-full">
+                        <h4 className="text-sm font-semibold">Value:</h4>
+                        <p className="text-sm text-text-primary font-semibold">{props.transaction.value} DRX</p>
+                    </div>
+                </div>
+            </div>
         </Card>
     );
 }
