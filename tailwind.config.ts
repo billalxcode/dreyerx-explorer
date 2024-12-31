@@ -14,7 +14,7 @@ export default {
                 foreground: 'var(--foreground)',
 
                 text: {
-                    primary: 'rgba(195, 0, 225, 1)',
+                    primary: '#FBD2B2',
                 },
                 container: {
                     default: 'rgba(255, 255, 255, 0.1)',
