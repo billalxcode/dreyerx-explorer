@@ -1,36 +1,58 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# DreyerX Explorer
 
-## Getting Started
+## What is DreyerX?
 
-First, run the development server:
+DreyerX Explorer is a blockchain explorer designed to provide detailed insights into blockchain transactions, addresses, and blocks. It aims to offer a user-friendly interface for tracking and analyzing blockchain data.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## How to Install
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+1. Clone the repository:
+    ```sh
+    git clone https://github.com/dreyerx/dreyerx-explorer.git
+    ```
+2. Navigate to the project directory:
+    ```sh
+    cd dreyerx-explorer
+    ```
+3. Install the dependencies:
+    ```sh
+    npm install
+    ```
+4. Start the application:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+    ```sh
+    npm start
+    ```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## How to Use
 
-## Learn More
+1. Open your web browser and navigate to `http://localhost:3000`.
+2. Use the search bar to enter a transaction hash, address, or block number.
+3. Browse the results to get detailed information about the blockchain data.
 
-To learn more about Next.js, take a look at the following resources:
+## Contributing
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+We welcome contributions! Please follow these steps to contribute:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. Fork the repository.
+2. Create a new branch:
+   `sh
+    git checkout -b feature-branch
+    `
+3. Make your changes and commit them:
+   `sh
+    git commit -m "Description of your changes"
+    `
+4. Push to the branch:
+   `sh
+    git push origin feature-branch
+    `
+5. Open a pull request on GitHub.
 
-## Deploy on Vercel
+## License
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Credits
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- [Blockscout](https://blockscout.com)
+- [Neonscan](https://neonscan.org)
