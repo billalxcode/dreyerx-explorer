@@ -2,6 +2,7 @@ import { Transaction } from '@/hooks/main/transactions';
 import Card from '@/ui/components/card/card';
 import { shortenString } from '@/utils/strings';
 import { formatDistance } from 'date-fns';
+import Link from 'next/link';
 import React from 'react';
 
 export default function TransactionItem(props: { transaction: Transaction }) {
@@ -19,7 +20,7 @@ export default function TransactionItem(props: { transaction: Transaction }) {
                 <div className="flex gap-4 justify-between">
                     <div className="flex gap-2">
                         <h4 className="text-sm font-semibold">From:</h4>
-                        <p className="text-sm text-text-primary font-semibold">{shortenString(props.transaction.from.hash, 10)}</p>
+                        <Link href={`/addr/${props.transaction.from.hash}`} className="text-sm text-text-primary font-semibold">{shortenString(props.transaction.from.hash, 10)}</Link>
                     </div>
                     <div className="flex gap-2 justify-self-start mr-auto">
                         <h4 className="text-sm font-semibold">To:</h4>
