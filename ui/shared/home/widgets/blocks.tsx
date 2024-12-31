@@ -1,28 +1,47 @@
+import useMainBlocks from "@/hooks/main/blocks";
 import Card from "@/ui/components/card/card";
-import TableContainer from "@/ui/components/table/container";
-import TableDataCol from "@/ui/components/table/Td";
-import TableHeaderCol from "@/ui/components/table/Th";
-import React from "react";
+import React, { useEffect, useRef } from "react";
+import BlocksItem from "./blocks-item";
+import { motion } from "motion/react";
 
 export default function LatestBlocks() {
+  const timerRef = useRef<NodeJS.Timeout | null>(null);
+  const { blocks, handleFetchBlocks } = useMainBlocks()
+
+  useEffect(() => {
+    handleFetchBlocks();
+
+    timerRef.current = setInterval(() => {
+      handleFetchBlocks();
+    }, 5_000);
+
+    return () => {
+      if (timerRef.current) {
+        clearInterval(timerRef.current);
+      }
+    };
+  }, [
+    handleFetchBlocks
+  ]);
+
   return (
     <Card title="Latest Blocks" className="w-1/3">
-      <TableContainer>
-        <thead>
-          <tr>
-            <TableHeaderCol>Block ID</TableHeaderCol>
-            <TableHeaderCol>Size</TableHeaderCol>
-            <TableHeaderCol>Time</TableHeaderCol>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <TableDataCol>1</TableDataCol>
-            <TableDataCol>20</TableDataCol>
-            <TableDataCol>1 minutes ago</TableDataCol>
-          </tr>
-        </tbody>
-      </TableContainer>
+      <div className="flex flex-col gap-2 mt-2">
+        {
+          blocks?.map((block, index) => {
+            if (index == 0) {
+              return (
+                <motion.div key={block.height} initial={{ x: -100, opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ duration: 0.5 }}>
+                  <BlocksItem block={block} />
+                </motion.div>
+              )
+            } else {
+
+              return <BlocksItem block={block} key={block.height} />
+            }
+          })
+        }
+      </div>
     </Card>
   );
 }
