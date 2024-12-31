@@ -1,17 +1,18 @@
 import { Block } from '@/hooks/main/blocks';
 import Card from '@/ui/components/card/card';
 import { shortenString } from '@/utils/strings';
-import moment from 'moment';
-import { motion } from 'motion/react';
+import { formatDistance } from 'date-fns';
 import React from 'react';
 
 export default function BlocksItem(props: { block: Block }) {
     return (
         <Card
-            title={props.block.height.toString()}
+            title={`#${props.block.height.toString()}`}
+            href={`/block/${props.block.height}`}
+            className='cursor-pointer hover:border-border-hover'
             toolbar={
                 <h4 className="text-sm font-semibold">
-                    {moment(props.block.timestamp).fromNow(true)}
+                    {formatDistance(props.block.timestamp, Date.now())}
                 </h4>
             }
         >
