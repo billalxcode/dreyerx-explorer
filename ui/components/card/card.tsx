@@ -6,30 +6,26 @@ export default function Card(props: {
     title?: string;
     toolbar?: ReactNode;
     className?: string;
-    href?: string
+    href?: string;
 }) {
     const header = props.title ? (
         <div className="flex flex-row justify-between items-center">
             <h3 className="text-lg font-semibold">{props.title}</h3>
             {props.toolbar ?? null}
         </div>
-    ) : null
+    ) : null;
 
     const card = (
         <div
             className={`p-4 bg-container-default rounded-lg shadow-md border border-border-normal ${props.className}`}
         >
-            { header }
-            { props.children }
+            {header}
+            {props.children}
         </div>
-    )
+    );
 
     if (props.href) {
-        return (
-            <Link href={props.href}>
-                { card }
-            </Link>
-        )
+        return <Link href={props.href}>{card}</Link>;
     }
 
     return card;
