@@ -1,8 +1,9 @@
-import useMainTransactions from '@/hooks/main/transactions';
+"use client"
+import useMainTransactions from '@/hooks/main/useMainTransactions';
 import Card from '@/ui/components/card/card';
 import { motion } from 'motion/react';
 import React, { useEffect, useRef } from 'react';
-import TransactionItem from './transactions-item';
+import TransactionItem from '../../transactions/item';
 import Link from 'next/link';
 
 export default function LatestTransactions() {
