@@ -1,7 +1,8 @@
-import useMainBlocks from '@/hooks/main/blocks';
+"use client"
+import useMainBlocks from '@/hooks/main/useMainBlocks';
 import Card from '@/ui/components/card/card';
 import React, { useEffect, useRef } from 'react';
-import BlocksItem from './blocks-item';
+import BlockItem from '../../blocks/item';
 import { motion } from 'motion/react';
 import Link from 'next/link';
 
@@ -43,11 +44,11 @@ export default function LatestBlocks() {
                                 animate={{ x: 0, opacity: 1 }}
                                 transition={{ duration: 0.5 }}
                             >
-                                <BlocksItem block={block} />
+                                <BlockItem block={block} />
                             </motion.div>
                         );
                     } else {
-                        return <BlocksItem block={block} key={block.height} />;
+                        return <BlockItem block={block} key={block.height} />;
                     }
                 })}
             </div>
