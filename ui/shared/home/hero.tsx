@@ -1,8 +1,10 @@
+"use client"
 import Card from '@/ui/components/card/card';
 import React, { useEffect } from 'react';
 import HeroItem from './item';
 import useStats from '@/hooks/stats/useStats';
-import ReactApexChart from 'react-apexcharts';
+import dynamic from 'next/dynamic';
+const ReactApexChart = dynamic(() => import('react-apexcharts'), { ssr: false });
 import { ApexOptions } from 'apexcharts';
 import useStatsChartTxs from '@/hooks/stats/useStatsChartTxs';
 import CardEmptyData from '@/ui/components/card/empty';
