@@ -1,5 +1,6 @@
 import { Transaction } from '@/hooks/main/useMainTransactions';
 import Card from '@/ui/components/card/card';
+import { weiToEther } from '@/utils/number';
 import { shortenString } from '@/utils/strings';
 import { formatDistance } from 'date-fns';
 import Link from 'next/link';
@@ -29,7 +30,7 @@ export default function TransactionItem(props: { transaction: Transaction }) {
                     </div>
                     <div className="flex gap-2 bg-container-default px-4 p-1 rounded-full">
                         <h4 className="text-sm font-semibold">Value:</h4>
-                        <p className="text-sm text-text-primary font-semibold">{props.transaction.value} DRX</p>
+                        <p className="text-sm text-text-primary font-semibold">{weiToEther(props.transaction.value ?? "0")} DRX</p>
                     </div>
                 </div>
             </div>
