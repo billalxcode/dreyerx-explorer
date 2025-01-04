@@ -5,6 +5,7 @@ import SkeletonCard from '@/ui/components/skeleton/card';
 import { formatDistance } from 'date-fns';
 import React, { useEffect } from 'react';
 import TransactionItem from './item';
+import TransactionDetailsData from './data';
 
 export default function TransactionDetailsContainer(props: {
     transaction: string;
@@ -37,52 +38,62 @@ export default function TransactionDetailsContainer(props: {
                                             Date.now(),
                                         )}
                                     </p>
-                                    <p className='pl-5 text-white/50'>
-                                        { transactionDetails?.timestamp }
+                                    <p className="pl-5 text-white/50">
+                                        {transactionDetails?.timestamp}
                                     </p>
                                 </div>
                             </TransactionItem>
-                            <div className="flex gap-5">
-                                <div className="font-semibold w-1/4">
-                                    Status
-                                </div>
-                                <div>{transactionDetails?.status}</div>
-                            </div>
-                            <div className="flex gap-5">
-                                <div className="font-semibold w-1/4">From</div>
-                                <div>{transactionDetails?.from.hash}</div>
-                            </div>
-                            <div className="flex gap-5">
-                                <div className="font-semibold w-1/4">To</div>
-                                <div>{transactionDetails?.to.hash}</div>
-                            </div>
+                            <TransactionItem
+                                title="Block"
+                                value={
+                                    transactionDetails?.block.toString() ?? '0'
+                                }
+                            />
+                            <TransactionItem title="Status">
+                                {
+                                    transactionDetails?.status === 'ok' ? (
+                                        <p className="text-green-500">Success</p>
+                                    ) : (
+                                        <p className="text-red-500">Failed</p>
+                                    )
+                                }
+                            </TransactionItem>
+                            <TransactionItem
+                                title="From"
+                                value={transactionDetails?.from.hash}
+                                href={`/address/${transactionDetails?.from.hash}`}
+                                isCopiable
+                            />
+                            <TransactionItem
+                                title="To"
+                                value={transactionDetails?.to.hash}
+                                href={`/addres/${transactionDetails?.to.hash}`}
+                                isCopiable
+                            />
                         </div>
                         <div className="flex flex-col gap-2 py-4">
-                            <div className="flex gap-5">
-                                <div className="font-semibold w-1/4">Value</div>
-                                <div>{transactionDetails?.value} DRX</div>
-                            </div>
-                            <div className="flex gap-5">
-                                <div className="font-semibold w-1/4">
-                                    Gas Used
-                                </div>
-                                <div>{transactionDetails?.gas_used}</div>
-                            </div>
-                            <div className="flex gap-5">
-                                <div className="font-semibold w-1/4">
-                                    Gas Limit
-                                </div>
-                                <div>{transactionDetails?.gas_limit}</div>
-                            </div>
-                            <div className="flex gap-5">
-                                <div className="font-semibold w-1/4">
-                                    Base fee per gas
-                                </div>
-                                <div>
-                                    {transactionDetails?.base_fee_per_gas}
-                                </div>
-                            </div>
+                            <TransactionItem
+                                title="Value"
+                                value={`${transactionDetails?.value} DRX`}
+                            />
+                            <TransactionItem
+                                title="Gas Used"
+                                value={transactionDetails?.gas_used}
+                            />
+                            <TransactionItem
+                                title="Gas Limit"
+                                value={transactionDetails?.gas_limit.toString()}
+                            />
+                            <TransactionItem
+                                title="Base fee per gas"
+                                value={transactionDetails?.base_fee_per_gas}
+                            />
                         </div>
+                        {
+                            transactionDetails?.decoded_input !== null ? (
+                                <TransactionDetailsData transaction={transactionDetails} />
+                            ) : null
+                        }
                     </div>
                 </Card>
             )}
