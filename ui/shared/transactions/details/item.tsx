@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import React, { ReactNode, useCallback } from 'react';
 import { FaCopy } from 'react-icons/fa6';
 
@@ -6,6 +7,7 @@ export default function TransactionItem(props: {
     value?: string;
     isCopiable?: boolean;
     children?: ReactNode;
+    href?: string
 }) {
     const copyToClipboard = useCallback(() => {
         navigator.clipboard.writeText(props.value ?? "");
@@ -16,11 +18,17 @@ export default function TransactionItem(props: {
             <div className="font-semibold w-1/4">{props.title}</div>
             {props.children ?? (
                 <div className="flex gap-2">
-                    <p>{props.value}</p>
+                    {props.href ? (
+                        <Link href={props.href}>
+                            <p className="text-text-primary cursor-pointer">{props.value}</p>
+                        </Link>
+                    ) : (
+                        <p>{props.value}</p>
+                    )}
                     {props.isCopiable && (
                         <button
                             onClick={copyToClipboard}
-                            className="text-primary-500 hover:text-primary-700"
+                            className="text-white/50 hover:text-white/70"
                         >
                             <FaCopy />
                         </button>
