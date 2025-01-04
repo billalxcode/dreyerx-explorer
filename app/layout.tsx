@@ -18,32 +18,40 @@ export const metadata: Metadata = {
             name: 'DreyerX Labs',
         },
     ],
+    creator: "DreyerX Labs",
+    icons: {
+        apple: "/assets/apple-touch-icon.png",
+        icon: "/assets/favicon.ico",
+    },
     robots: 'index, follow',
     openGraph: {
         title: 'DreyerX Explorer',
         description:
             'Explore the world of DreyerX with our comprehensive explorer.',
-        url: 'https://dreyerx-explorer.com',
+        url: 'https://dreyerx.com',
+        emails: [
+            'info@dreyerx.com'
+        ],
         type: 'website',
         locale: 'en_US',
         siteName: 'DreyerX Explorer',
         images: [
             {
-                url: 'https://dreyerx-explorer.com/og-image.jpg',
-                width: 1200,
-                height: 630,
+                url: '/assets/og-image.png',
+                width: 1920,
+                height: 1080,
                 alt: 'DreyerX Explorer',
             },
         ],
     },
     twitter: {
         card: 'summary_large_image',
-        site: '@dreyerx',
-        creator: '@dreyerx',
+        site: '@dreyerxcoin',
+        creator: '@dreyerxcoin',
         title: 'DreyerX Explorer',
         description:
             'Explore the world of DreyerX with our comprehensive explorer.',
-        images: ['https://dreyerx-explorer.com/twitter-image.jpg'],
+        images: ['/assets/og-image.png'],
     },
 };
 
