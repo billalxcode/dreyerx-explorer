@@ -27,7 +27,7 @@ export default function LatestBlocks() {
     return (
         <Card
             title="Latest Blocks"
-            className="w-1/3"
+            className="w-full lg:w-1/3"
             toolbar={
                 <Link href={'/blocks'}>
                     <h3 className="text-sm font-semibold">View More</h3>

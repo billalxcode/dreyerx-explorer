@@ -18,8 +18,8 @@ export default function TransactionItem(props: { transaction: Transaction }) {
                 </h4>
             }
         >
-            <div className="flex flex-col gap-2">
-                <div className="flex gap-4 justify-between">
+            <div className="flex flex-col gap-2 mt-2 lg:mt-0">
+                <div className="flex flex-col lg:flex-row gap-2 lg:gap-4 justify-between">
                     <div className="flex gap-2">
                         <h4 className="text-sm font-semibold">From:</h4>
                         <Link
@@ -39,7 +39,7 @@ export default function TransactionItem(props: { transaction: Transaction }) {
                                 : shortenString(props.transaction.to.hash, 10)}
                         </p>
                     </div>
-                    <div className="flex gap-2 bg-container-default px-4 p-1 rounded-full">
+                    <div className="flex justify-center lg:justify-start gap-2 bg-container-default px-4 p-1 rounded-full">
                         <h4 className="text-sm font-semibold">Value:</h4>
                         <p className="text-sm text-text-primary font-semibold">
                             {weiToEther(props.transaction.value ?? '0')} DRX

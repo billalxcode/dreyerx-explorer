@@ -34,7 +34,7 @@ export default function LatestTransactions() {
                 </Link>
             }
         >
-            <div className="flex flex-col gap-2 mt-2">
+            <div className="flex flex-col gap-2 mt-2 overflow-x-auto">
                 {transactions?.map((transaction, index) => {
                     if (index == 0) {
                         return (
