@@ -45,6 +45,7 @@ export type Fee = {
 
 export type Address = {
     hash: string;
+    ens_domain_name: string;
     implementation_name: string;
     name: string;
     is_contract: boolean;
