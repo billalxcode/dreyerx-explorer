@@ -6,6 +6,7 @@ import { formatDistance } from 'date-fns';
 import React, { useEffect } from 'react';
 import TransactionItem from './item';
 import TransactionDetailsData from './data';
+import { weiToEther } from '@/utils/number';
 
 export default function TransactionDetailsContainer(props: {
     transaction: string;
@@ -54,19 +55,26 @@ export default function TransactionDetailsContainer(props: {
                                     transactionDetails?.status === 'ok' ? (
                                         <p className="text-green-500">Success</p>
                                     ) : (
-                                        <p className="text-red-500">Failed</p>
+                                        <p className="text-red-500">Failed with { transactionDetails?.revert_reason }</p>
                                     )
                                 }
                             </TransactionItem>
                             <TransactionItem
                                 title="From"
-                                value={transactionDetails?.from.hash}
+                                value={transactionDetails?.from.ens_domain_name ?? transactionDetails?.from.hash}
+                                valueClassName="font-semibold"
                                 href={`/address/${transactionDetails?.from.hash}`}
                                 isCopiable
                             />
                             <TransactionItem
                                 title="To"
-                                value={transactionDetails?.to.hash}
+                                value={
+                                    transactionDetails?.to.ens_domain_name ?? (
+                                        transactionDetails?.to.is_contract && transactionDetails.to.is_verified ? (
+                                            transactionDetails?.to.name
+                                        ) : transactionDetails?.to.hash
+                                    )}
+                                valueClassName="font-semibold"
                                 href={`/addres/${transactionDetails?.to.hash}`}
                                 isCopiable
                             />
@@ -74,8 +82,12 @@ export default function TransactionDetailsContainer(props: {
                         <div className="flex flex-col gap-4 py-4">
                             <TransactionItem
                                 title="Value"
-                                value={`${transactionDetails?.value} DRX`}
-                            />
+                            >
+                                <div className="flex gap-2 items-center">
+                                    <p>{weiToEther(transactionDetails?.value ?? "0")}</p>
+                                    <div className="text-white/50 text-sm">DRX</div>
+                                </div>
+                                </TransactionItem>
                             <TransactionItem
                                 title="Gas Used"
                                 value={transactionDetails?.gas_used}
