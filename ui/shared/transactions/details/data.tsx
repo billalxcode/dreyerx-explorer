@@ -10,7 +10,7 @@ export default function TransactionDetailsData(props: {
 }) {
     return (
         <Card title="Data">
-            <div className="flex flex-col gap-2 mt-2">
+            <div className="flex flex-col gap-4 mt-2">
                 <div className="flex flex-col">
                     <h2 className="text-white/50 text-sm">Call</h2>
                     <p className="font-semibold text-lg">
