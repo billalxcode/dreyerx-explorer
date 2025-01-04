@@ -69,13 +69,15 @@ export default function TransactionDetailsContainer(props: {
                             <TransactionItem
                                 title="To"
                                 value={
-                                    transactionDetails?.to.ens_domain_name ?? (
+                                    transactionDetails?.to == null ? (
+                                        'Contract Creation'
+                                    ) : transactionDetails?.to.ens_domain_name ?? (
                                         transactionDetails?.to.is_contract && transactionDetails.to.is_verified ? (
                                             transactionDetails?.to.name
                                         ) : transactionDetails?.to.hash
                                     )}
                                 valueClassName="font-semibold"
-                                href={`/addres/${transactionDetails?.to.hash}`}
+                                href={`/addres/${transactionDetails?.transaction_types.includes("contract_creation") ? transactionDetails?.created_contract.hash : transactionDetails?.to.hash}`}
                                 isCopiable
                             />
                         </div>
