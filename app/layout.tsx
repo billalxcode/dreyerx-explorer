@@ -18,9 +18,7 @@ export const metadata: Metadata = {
             name: 'DreyerX Labs',
         },
     ],
-    viewport: 'width=device-width, initial-scale=1',
     robots: 'index, follow',
-    themeColor: '#000000',
     openGraph: {
         title: 'DreyerX Explorer',
         description:
