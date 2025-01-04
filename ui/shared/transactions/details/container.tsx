@@ -23,7 +23,7 @@ export default function TransactionDetailsContainer(props: {
             ) : (
                 <Card className="mt-2">
                     <div className="flex flex-col gap-4 divide-y divide-border-normal">
-                        <div className="flex flex-col gap-2">
+                        <div className="flex flex-col gap-4">
                             <TransactionItem
                                 title="Transaction Hash"
                                 value={transactionDetails?.hash ?? ''}
@@ -71,7 +71,7 @@ export default function TransactionDetailsContainer(props: {
                                 isCopiable
                             />
                         </div>
-                        <div className="flex flex-col gap-2 py-4">
+                        <div className="flex flex-col gap-4 py-4">
                             <TransactionItem
                                 title="Value"
                                 value={`${transactionDetails?.value} DRX`}
@@ -87,6 +87,12 @@ export default function TransactionDetailsContainer(props: {
                             <TransactionItem
                                 title="Base fee per gas"
                                 value={transactionDetails?.base_fee_per_gas}
+                            />
+                        </div>
+                        <div className="flex flex-col gap-4 py-4">
+                            <TransactionItem
+                                title="Nonce"
+                                value={transactionDetails?.nonce.toString() ?? "0"}
                             />
                         </div>
                         {
