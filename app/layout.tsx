@@ -18,10 +18,10 @@ export const metadata: Metadata = {
             name: 'DreyerX Labs',
         },
     ],
-    creator: "DreyerX Labs",
+    creator: 'DreyerX Labs',
     icons: {
-        apple: "/assets/apple-touch-icon.png",
-        icon: "/assets/favicon.ico",
+        apple: '/assets/apple-touch-icon.png',
+        icon: '/assets/favicon.ico',
     },
     robots: 'index, follow',
     openGraph: {
@@ -29,9 +29,7 @@ export const metadata: Metadata = {
         description:
             'Explore the world of DreyerX with our comprehensive explorer.',
         url: 'https://dreyerx.com',
-        emails: [
-            'info@dreyerx.com'
-        ],
+        emails: ['info@dreyerx.com'],
         type: 'website',
         locale: 'en_US',
         siteName: 'DreyerX Explorer',

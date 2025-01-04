@@ -1,22 +1,22 @@
-import Container from '@/ui/components/container/container'
-import SearchBar from '@/ui/components/searchbar/searchbar'
-import AddressContainer from '@/ui/shared/address/container'
-import Header from '@/ui/shared/header/header'
-import React from 'react'
+import Container from '@/ui/components/container/container';
+import SearchBar from '@/ui/components/searchbar/searchbar';
+import AddressContainer from '@/ui/shared/address/container';
+import Header from '@/ui/shared/header/header';
+import React from 'react';
 
 export default async function Page(props: {
-    params: Promise<{ address: string }>
+    params: Promise<{ address: string }>;
 }) {
-    const address = (await props.params).address
-  return (
-    <>
-        <Header />
+    const address = (await props.params).address;
+    return (
+        <>
+            <Header />
 
-        <Container>
-            <SearchBar />
+            <Container>
+                <SearchBar />
 
-            <AddressContainer address={address} />
-        </Container>
-    </>
-  )
+                <AddressContainer address={address} />
+            </Container>
+        </>
+    );
 }

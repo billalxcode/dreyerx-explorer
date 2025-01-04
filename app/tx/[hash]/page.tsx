@@ -4,7 +4,9 @@ import Header from '@/ui/shared/header/header';
 import TransactionDetailsContainer from '@/ui/shared/transactions/details/container';
 import React from 'react';
 
-export default async function Page(props: { params: Promise<{ hash: string }> }) {
+export default async function Page(props: {
+    params: Promise<{ hash: string }>;
+}) {
     const transaction_hash = (await props.params).hash;
     return (
         <>

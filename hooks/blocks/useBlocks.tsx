@@ -56,7 +56,7 @@ export default function useBlocks() {
 
     const handleFetchBlocks = useCallback(async () => {
         setIsLoading(true);
-		if (startBlock === null) {
+        if (startBlock === null) {
             handleFetchMainBlocks();
             const latestBlockHeight = getLatestBlock();
             setStartBlock(latestBlockHeight?.toString() ?? null);

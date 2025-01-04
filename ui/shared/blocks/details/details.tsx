@@ -10,12 +10,9 @@ export default function BlockDetails(props: { block: string }) {
     const { handleFetchBlockDetails, blockDetails, isLoading } =
         useBlockDetails(props.block);
     useEffect(() => {
-        console.log(blockDetails)
-        handleFetchBlockDetails();   
-    }, [
-        blockDetails,
-        handleFetchBlockDetails,
-    ])
+        console.log(blockDetails);
+        handleFetchBlockDetails();
+    }, [blockDetails, handleFetchBlockDetails]);
     return (
         <Card title="Block Details" className="w-full">
             {isLoading ? (

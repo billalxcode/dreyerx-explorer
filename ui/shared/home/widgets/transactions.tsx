@@ -1,4 +1,4 @@
-"use client"
+'use client';
 import useMainTransactions from '@/hooks/main/useMainTransactions';
 import Card from '@/ui/components/card/card';
 import { motion } from 'motion/react';

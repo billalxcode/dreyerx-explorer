@@ -51,17 +51,21 @@ export default function TransactionDetailsContainer(props: {
                                 }
                             />
                             <TransactionItem title="Status">
-                                {
-                                    transactionDetails?.status === 'ok' ? (
-                                        <p className="text-green-500">Success</p>
-                                    ) : (
-                                        <p className="text-red-500">Failed with { transactionDetails?.revert_reason }</p>
-                                    )
-                                }
+                                {transactionDetails?.status === 'ok' ? (
+                                    <p className="text-green-500">Success</p>
+                                ) : (
+                                    <p className="text-red-500">
+                                        Failed with{' '}
+                                        {transactionDetails?.revert_reason}
+                                    </p>
+                                )}
                             </TransactionItem>
                             <TransactionItem
                                 title="From"
-                                value={transactionDetails?.from.ens_domain_name ?? transactionDetails?.from.hash}
+                                value={
+                                    transactionDetails?.from.ens_domain_name ??
+                                    transactionDetails?.from.hash
+                                }
                                 valueClassName="font-semibold"
                                 href={`/address/${transactionDetails?.from.hash}`}
                                 isCopiable
@@ -69,27 +73,33 @@ export default function TransactionDetailsContainer(props: {
                             <TransactionItem
                                 title="To"
                                 value={
-                                    transactionDetails?.to == null ? (
-                                        'Contract Creation'
-                                    ) : transactionDetails?.to.ens_domain_name ?? (
-                                        transactionDetails?.to.is_contract && transactionDetails.to.is_verified ? (
-                                            transactionDetails?.to.name
-                                        ) : transactionDetails?.to.hash
-                                    )}
+                                    transactionDetails?.to == null
+                                        ? 'Contract Creation'
+                                        : (transactionDetails?.to
+                                              .ens_domain_name ??
+                                          (transactionDetails?.to.is_contract &&
+                                          transactionDetails.to.is_verified
+                                              ? transactionDetails?.to.name
+                                              : transactionDetails?.to.hash))
+                                }
                                 valueClassName="font-semibold"
-                                href={`/addres/${transactionDetails?.transaction_types.includes("contract_creation") ? transactionDetails?.created_contract.hash : transactionDetails?.to.hash}`}
+                                href={`/addres/${transactionDetails?.transaction_types.includes('contract_creation') ? transactionDetails?.created_contract.hash : transactionDetails?.to.hash}`}
                                 isCopiable
                             />
                         </div>
                         <div className="flex flex-col gap-4 py-4">
-                            <TransactionItem
-                                title="Value"
-                            >
+                            <TransactionItem title="Value">
                                 <div className="flex gap-2 items-center">
-                                    <p>{weiToEther(transactionDetails?.value ?? "0")}</p>
-                                    <div className="text-white/50 text-sm">DRX</div>
+                                    <p>
+                                        {weiToEther(
+                                            transactionDetails?.value ?? '0',
+                                        )}
+                                    </p>
+                                    <div className="text-white/50 text-sm">
+                                        DRX
+                                    </div>
                                 </div>
-                                </TransactionItem>
+                            </TransactionItem>
                             <TransactionItem
                                 title="Gas Used"
                                 value={transactionDetails?.gas_used}
@@ -106,14 +116,16 @@ export default function TransactionDetailsContainer(props: {
                         <div className="flex flex-col gap-4 py-4">
                             <TransactionItem
                                 title="Nonce"
-                                value={transactionDetails?.nonce.toString() ?? "0"}
+                                value={
+                                    transactionDetails?.nonce.toString() ?? '0'
+                                }
                             />
                         </div>
-                        {
-                            transactionDetails?.decoded_input !== null ? (
-                                <TransactionDetailsData transaction={transactionDetails} />
-                            ) : null
-                        }
+                        {transactionDetails?.decoded_input !== null ? (
+                            <TransactionDetailsData
+                                transaction={transactionDetails}
+                            />
+                        ) : null}
                     </div>
                 </Card>
             )}

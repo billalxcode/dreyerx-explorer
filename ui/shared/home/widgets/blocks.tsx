@@ -1,4 +1,4 @@
-"use client"
+'use client';
 import useMainBlocks from '@/hooks/main/useMainBlocks';
 import Card from '@/ui/components/card/card';
 import React, { useEffect, useRef } from 'react';

@@ -7,11 +7,11 @@ export default function TransactionItem(props: {
     value?: string;
     isCopiable?: boolean;
     children?: ReactNode;
-    valueClassName?: string,
-    href?: string
+    valueClassName?: string;
+    href?: string;
 }) {
     const copyToClipboard = useCallback(() => {
-        navigator.clipboard.writeText(props.value ?? "");
+        navigator.clipboard.writeText(props.value ?? '');
     }, [props.value]);
 
     return (
@@ -21,7 +21,11 @@ export default function TransactionItem(props: {
                 <div className="flex gap-2">
                     {props.href ? (
                         <Link href={props.href}>
-                            <p className={`text-text-primary cursor-pointer ${props.valueClassName}`}>{props.value}</p>
+                            <p
+                                className={`text-text-primary cursor-pointer ${props.valueClassName}`}
+                            >
+                                {props.value}
+                            </p>
                         </Link>
                     ) : (
                         <p className={props.valueClassName}>{props.value}</p>

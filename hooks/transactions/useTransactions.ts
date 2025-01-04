@@ -152,15 +152,15 @@ export default function useTransactions() {
         const url = get_api_url(`/v2/transactions?${params}`);
 
         fetch(url, {
-            method: "GET",
+            method: 'GET',
             headers: {
-                "Content-Type": "application/json",
+                'Content-Type': 'application/json',
             },
         }).then(async (response) => {
             const data = await response.json();
             setTransactions(data.items);
             setIsLoading(false);
-        })
+        });
     }, [startBlock, handleFetchMainBlocks, getLatestBlock, itemsCount]);
 
     return {
@@ -171,6 +171,6 @@ export default function useTransactions() {
         handleFetchTransactions,
         setTransactions,
         setStartBlock,
-        setItemsCount
+        setItemsCount,
     };
 }

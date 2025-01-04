@@ -50,9 +50,7 @@ export default function useMainBlocks() {
 
     const getLatestBlock = useCallback(() => {
         return blocks?.[0].height;
-    }, [
-        blocks
-    ])
+    }, [blocks]);
 
     const handleFetchBlocks = useCallback(async () => {
         setIsLoading(true);
@@ -77,6 +75,6 @@ export default function useMainBlocks() {
         blocks,
         isLoading,
         handleFetchBlocks,
-        getLatestBlock
+        getLatestBlock,
     };
 }

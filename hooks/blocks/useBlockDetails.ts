@@ -1,5 +1,5 @@
-import { get_api_url } from "@/config/api";
-import { useCallback, useState } from "react";
+import { get_api_url } from '@/config/api';
+import { useCallback, useState } from 'react';
 
 export type BlockDetails = {
     base_fee_per_gas: string;
@@ -27,7 +27,7 @@ export type BlockDetails = {
     type: string;
     uncles_hashes: string[];
     withdrawals_count: number;
-}
+};
 
 export type MinerDetails = {
     hash: string;
@@ -38,18 +38,18 @@ export type MinerDetails = {
     watchlist_names: Tag[];
     public_tags: Tag[];
     is_verified: boolean;
-}
+};
 
 export type Tag = {
     address_hash: string;
     display_name: string;
     label: string;
-}
+};
 
 export type Reward = {
     reward: number;
     type: string;
-}
+};
 
 export default function useBlockDetails(block: string) {
     const [blockDetails, setBlockDetails] = useState<BlockDetails | null>(null);
@@ -58,31 +58,31 @@ export default function useBlockDetails(block: string) {
     const handleFetchBlockDetails = useCallback(async () => {
         setIsLoading(true);
         try {
-            const url = get_api_url("/v2/blocks/" + block);
+            const url = get_api_url('/v2/blocks/' + block);
             fetch(url, {
-                method: "GET",
+                method: 'GET',
                 headers: {
-                    "Content-Type": "application/json",
+                    'Content-Type': 'application/json',
                 },
-            }).then(async (response) => {
-                const data = await response.json();
-                setBlockDetails(data);
-                setIsLoading(false);
-            }).catch((error) => {
-                console.error(error);
             })
+                .then(async (response) => {
+                    const data = await response.json();
+                    setBlockDetails(data);
+                    setIsLoading(false);
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
         } catch (error) {
             console.error(error);
         } finally {
             setIsLoading(false);
         }
-    }, [
-        block
-    ])
+    }, [block]);
 
     return {
         blockDetails,
         isLoading,
-        handleFetchBlockDetails
-    }
+        handleFetchBlockDetails,
+    };
 }

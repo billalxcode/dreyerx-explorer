@@ -161,5 +161,5 @@ export default function useTransactionDetails(transaction_hash: string) {
         transactionDetails,
         isLoading,
         handleFetchTransactionDetails,
-    }
+    };
 }
