@@ -7,7 +7,9 @@ export default function Provider(props: { children: ReactNode }) {
     const lenisRef = useRef<LenisRef | null>(null);
     
     useEffect(() => {
-        lenisRef.current?.lenis?.start();
+        if (lenisRef.current) {
+            lenisRef.current.lenis?.start();
+        }
     })
 
     const handleMouseMove = useCallback(
@@ -23,14 +25,14 @@ export default function Provider(props: { children: ReactNode }) {
 
     return (
         <ReactLenis
+        className='h-auto'
             root
             ref={lenisRef}
             options={{
                 autoRaf: true,
                 smoothWheel: true,
                 duration: 1.1,
-                lerp: 0.1,
-                syncTouch: true,
+                lerp: 0.05
             }}
         >
             <div
