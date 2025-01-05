@@ -22,8 +22,10 @@ export default function Provider(props: { children: ReactNode }) {
             options={{
                 autoRaf: true,
                 smoothWheel: true,
-                duration: 1.5,
+                duration: 1.1,
                 lerp: 0.1,
+                syncTouch: true,
+                
             }}
         >
             <div
