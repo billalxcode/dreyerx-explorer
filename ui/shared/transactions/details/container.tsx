@@ -23,7 +23,7 @@ export default function TransactionDetailsContainer(props: {
                 <SkeletonCard className="mt-2" />
             ) : (
                 <Card className="mt-2">
-                    <div className="flex flex-col gap-4 divide-y divide-border-normal">
+                    <div className="flex flex-col gap-4 divide-y divide-border-normal overflow-x-auto lg:overflow-x-hidden">
                         <div className="flex flex-col gap-4">
                             <TransactionItem
                                 title="Transaction Hash"
@@ -31,7 +31,7 @@ export default function TransactionDetailsContainer(props: {
                                 isCopiable
                             />
                             <TransactionItem title="Timestamp">
-                                <div className="flex gap-5 divide-x divide-border-hover">
+                                <div className="flex flex-col lg:flex-row gap-1 lg:gap-5 lg:divide-x divide-border-hover">
                                     <p>
                                         {formatDistance(
                                             transactionDetails?.timestamp ??
@@ -39,7 +39,7 @@ export default function TransactionDetailsContainer(props: {
                                             Date.now(),
                                         )}
                                     </p>
-                                    <p className="pl-5 text-white/50">
+                                    <p className="lg:pl-5 text-white/50">
                                         {transactionDetails?.timestamp}
                                     </p>
                                 </div>

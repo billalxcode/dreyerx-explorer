@@ -74,7 +74,7 @@ export default function HeroSection() {
         <div className="flex flex-col lg:flex-row gap-2 w-full">
             <Card title="Network Info" className="w-full">
                 <div className="flex flex-row mt-2 gap-2">
-                    <div className="flex flex-col gap-2 w-full">
+                    <div className="flex flex-col gap-2 w-full h-fulll">
                         <HeroItem
                             title="Transactions"
                             value={stats?.total_transactions.toString() ?? '0'}
@@ -86,7 +86,7 @@ export default function HeroSection() {
                             isLoading={isLoading}
                         />
                     </div>
-                    <div className="flex flex-col gap-2 w-full">
+                    <div className="flex flex-col gap-2 w-full h-full">
                         <HeroItem
                             title="Gas"
                             value={`${stats?.gas_prices.average.toString() ?? '0'} Gwei`}

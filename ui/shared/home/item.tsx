@@ -8,7 +8,7 @@ export default function HeroItem(props: {
     isLoading?: boolean;
 }) {
     return (
-        <Card className="w-full">
+        <Card className="w-full flex-1">
             <h2 className="text-white/50 text-sm">{props.title}</h2>
             {props.isLoading ? (
                 <SkeletonText />

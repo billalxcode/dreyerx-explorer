@@ -15,8 +15,8 @@ export default function TransactionItem(props: {
     }, [props.value]);
 
     return (
-        <div className="flex gap-5">
-            <div className="font-semibold w-1/4">{props.title}</div>
+        <div className="flex flex-col lg:flex-row gap-2 lg:gap-5">
+            <div className="font-semibold w-full lg:w-1/4">{props.title}</div>
             {props.children ?? (
                 <div className="flex gap-2">
                     {props.href ? (
