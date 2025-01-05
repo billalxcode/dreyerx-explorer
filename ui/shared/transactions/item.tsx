@@ -9,7 +9,7 @@ import React from 'react';
 export default function TransactionItem(props: { transaction: Transaction }) {
     return (
         <Card
-            title={`${shortenString(props.transaction.hash, 10)}`}
+            title={`${shortenString(props.transaction.hash, 7)}`}
             href={`/tx/${props.transaction.hash}`}
             className="cursor-pointer hover:border-border-hover"
             toolbar={
