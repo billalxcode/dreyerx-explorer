@@ -1,9 +1,14 @@
 'use client';
-import ReactLenis from 'lenis/react';
-import React, { ReactNode, useCallback, useState } from 'react';
+import ReactLenis, { LenisRef } from 'lenis/react';
+import React, { ReactNode, useCallback, useEffect, useRef, useState } from 'react';
 
 export default function Provider(props: { children: ReactNode }) {
     const [glowPosition, setGlowPosition] = useState({ x: 0, y: 0 });
+    const lenisRef = useRef<LenisRef | null>(null);
+    
+    useEffect(() => {
+        lenisRef.current?.lenis?.start();
+    })
 
     const handleMouseMove = useCallback(
         (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
@@ -19,13 +24,13 @@ export default function Provider(props: { children: ReactNode }) {
     return (
         <ReactLenis
             root
+            ref={lenisRef}
             options={{
                 autoRaf: true,
                 smoothWheel: true,
                 duration: 1.1,
                 lerp: 0.1,
                 syncTouch: true,
-                
             }}
         >
             <div
