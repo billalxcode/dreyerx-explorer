@@ -15,7 +15,7 @@ export default function BlockDetailsTransactions(props: { block: string }) {
     }, [handleFetchBlockTransactions]);
     return (
         <Card title="Transactions" className="w-full">
-            <div className="flex flex-col gap-2 mt-2 w-full h-full min-h-64 justify-center">
+            <div className={`flex flex-col gap-2 mt-2 w-full h-full ${transactions.length===0 ? "min-h-64" : "h-full"} justify-center`}>
                 {transactions.length === 0 ? (
                     <CardEmptyData />
                 ) : (
