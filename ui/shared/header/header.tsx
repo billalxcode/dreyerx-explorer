@@ -40,7 +40,7 @@ export default function Header() {
                 variants={drawerVariants}
             >
                 <div className="absolute w-full p-4">
-                    <div className="flex flex-col items-start h-full p-4">
+                    <div className="flex flex-col gap-5 items-start h-full p-4">
                         <div className="flex justify-end w-full">
                             <FaTimes
                                 onClick={toggleMenu}
@@ -48,7 +48,7 @@ export default function Header() {
                             />
                         </div>
                         <HeaderMenu />
-                        {/* <HeaderNetworkSelect /> */}
+                        <HeaderNetworkSelect />
                     </div>
                 </div>
             </motion.div>
