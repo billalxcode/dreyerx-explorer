@@ -89,12 +89,12 @@ export default function HeroSection() {
                     <div className="flex flex-col gap-2 w-full h-full">
                         <HeroItem
                             title="Gas"
-                            value={`${stats?.gas_prices.average.toString() ?? '0'} Gwei`}
+                            value={`${stats?.gas_prices.average?.toString() ?? '0'} Gwei`}
                             isLoading={isLoading}
                         />
                         <HeroItem
                             title="Wallet Addresses"
-                            value={stats?.total_addresses.toString() ?? '0'}
+                            value={stats?.total_addresses?.toString() ?? '0'}
                             isLoading={isLoading}
                         />
                     </div>
