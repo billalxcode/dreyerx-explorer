@@ -9,16 +9,16 @@ export default function TransactionDetailsData(props: {
     transaction: Transaction | null;
 }) {
     return (
-        <Card title="Data">
-            <div className="flex flex-col gap-4 mt-2">
-                <div className="flex flex-col">
+        <Card title="Data" className='w-full'>
+            <div className="flex flex-col gap-4 mt-2 w-full">
+                <div className="flex flex-col w-full">
                     <h2 className="text-white/50 text-sm">Call</h2>
                     <p className="font-semibold text-lg">
                         {props.transaction?.decoded_input.method_call ??
                             'unknown'}
                     </p>
                 </div>
-                <TableContainer>
+                <TableContainer className='w-full'>
                     <thead>
                         <tr>
                             <TableHeaderCol className="w-16">#</TableHeaderCol>

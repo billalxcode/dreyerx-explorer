@@ -8,6 +8,7 @@ import TransactionItem from './item';
 import TransactionDetailsData from './data';
 import { weiToEther } from '@/utils/number';
 import CardEmptyData from '@/ui/components/card/empty';
+import { shortenString } from '@/utils/strings';
 
 export default function TransactionDetailsContainer(props: {
     transaction: string;
@@ -19,20 +20,20 @@ export default function TransactionDetailsContainer(props: {
         handleFetchTransactionDetails();
     }, [handleFetchTransactionDetails]);
     return (
-        <Card title="Transaction Details">
+        <Card title="Transaction Details" className='w-full'>
             {isLoading ? (
                 <SkeletonCard className="mt-2" />
             ) : (
-                <Card className="mt-2">
+                <Card className="mt-2 w-full">
                     {
                         transactionDetails?.message ? (
                             <CardEmptyData message='Transaction not found' />
                         ) : (
-                        <div className="flex flex-col gap-4 divide-y divide-border-normal overflow-x-auto lg:overflow-x-hidden">
+                        <div className="flex flex-col gap-4 divide-y w-full divide-border-normal overflow-x-auto lg:overflow-x-hidden">
                             <div className="flex flex-col gap-4">
                                 <TransactionItem
                                     title="Transaction Hash"
-                                    value={transactionDetails?.hash ?? ''}
+                                    value={shortenString(transactionDetails?.hash ?? "", 10)}
                                     isCopiable
                                 />
                                 <TransactionItem title="Timestamp">
@@ -69,7 +70,7 @@ export default function TransactionDetailsContainer(props: {
                                     title="From"
                                     value={
                                         transactionDetails?.from.ens_domain_name ??
-                                        transactionDetails?.from.hash
+                                        shortenString(transactionDetails?.from.hash ?? "", 10)
                                     }
                                     valueClassName="font-semibold"
                                     href={`/address/${transactionDetails?.from.hash}`}
@@ -85,7 +86,7 @@ export default function TransactionDetailsContainer(props: {
                                             (transactionDetails?.to.is_contract &&
                                             transactionDetails.to.is_verified
                                                 ? transactionDetails?.to.name
-                                                : transactionDetails?.to.hash))
+                                                : shortenString(transactionDetails?.to.hash ?? "", 10)))
                                     }
                                     valueClassName="font-semibold"
                                     href={`/addres/${transactionDetails?.transaction_types.includes('contract_creation') ? transactionDetails?.created_contract.hash : transactionDetails?.to.hash}`}
