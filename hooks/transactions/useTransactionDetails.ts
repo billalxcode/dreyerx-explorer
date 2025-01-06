@@ -2,6 +2,7 @@ import { get_api_url } from '@/config/api';
 import { useCallback, useState } from 'react';
 
 export type Transaction = {
+    message?: string;
     timestamp: string;
     fee: Fee;
     gas_limit: number;

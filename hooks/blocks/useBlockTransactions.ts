@@ -132,7 +132,7 @@ export type Parameter = {
 };
 
 export default function useBlockTransactions(block: string) {
-    const [transactions, setTransactions] = useState<Transaction[]>([]);
+    const [transactions, setTransactions] = useState<Transaction[] | { message?: string }>([]);
     const [isLoading, setIsLoading] = useState(true);
 
     const handleFetchBlockTransactions = useCallback(() => {
@@ -146,7 +146,7 @@ export default function useBlockTransactions(block: string) {
                 },
             }).then(async (response) => {
                 const data = await response.json();
-                setTransactions(data.items);
+                setTransactions(data.items || { message: data.message });
                 setIsLoading(false);
             });
         } catch (error) {

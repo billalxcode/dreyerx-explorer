@@ -2,6 +2,7 @@ import { get_api_url } from '@/config/api';
 import { useCallback, useState } from 'react';
 
 export type BlockDetails = {
+    message?: string;
     base_fee_per_gas: string;
     burnt_fees: string;
     burnt_fees_percentage: number;
