@@ -6,6 +6,7 @@ import { FaBars } from 'react-icons/fa6';
 import { useState } from 'react';
 import { FaTimes } from 'react-icons/fa';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 
 export default function Header() {
     const [isOpen, setIsOpen] = useState(false);
@@ -20,9 +21,12 @@ export default function Header() {
 
     return (
         <div className="flex justify-between items-center w-full p-4 select-none px-8">
-            <Link href={'/'} className="font-bold">
-                DREYERX EXPLORER
-            </Link>
+            <div className="flex gap-2 items-center">
+                <Image src={"/assets/logo.png"} alt='DreyerX Logo' width={26} height={26} />
+                <Link href={'/'} className="font-bold text-sm">
+                    DREYERX EXPLORER
+                </Link>
+            </div>
 
             <div className="lg:hidden">
                 <FaBars onClick={toggleMenu} className="cursor-pointer" />
