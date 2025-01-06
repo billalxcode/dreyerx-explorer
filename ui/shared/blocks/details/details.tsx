@@ -23,15 +23,50 @@ export default function BlockDetails(props: { block: string }) {
                     <div className="flex flex-col gap-4 divide-y divide-border-normal">
                         <div className="flex flex-col gap-2">
                             <BlockItem title="Block Hash" value={props.block} />
-                            <BlockItem title="Timestamp" value={formatDistance(blockDetails?.timestamp ?? Date.now(), Date.now())} />
-                            <BlockItem title="Size" value={blockDetails?.size.toString() ?? "0"} />
-                            <BlockItem title="Tx Count" value={blockDetails?.transaction_count.toString() ?? "0"} />
-                            <BlockItem title="Validated By" value={shortenString(blockDetails?.miner.hash ?? '', 5)} />
+                            <BlockItem
+                                title="Timestamp"
+                                value={formatDistance(
+                                    blockDetails?.timestamp ?? Date.now(),
+                                    Date.now(),
+                                )}
+                            />
+                            <BlockItem
+                                title="Size"
+                                value={blockDetails?.size.toString() ?? '0'}
+                            />
+                            <BlockItem
+                                title="Tx Count"
+                                value={
+                                    blockDetails?.transaction_count.toString() ??
+                                    '0'
+                                }
+                            />
+                            <BlockItem
+                                title="Validated By"
+                                value={shortenString(
+                                    blockDetails?.miner.hash ?? '',
+                                    5,
+                                )}
+                            />
                         </div>
                         <div className="flex flex-col gap-2 py-4">
-                            <BlockItem title="Gas Used" value={blockDetails?.gas_used.toString() ?? "0"} />
-                            <BlockItem title="Gas Limit" value={blockDetails?.gas_limit.toString() ?? "0"} />
-                            <BlockItem title="Base fee per gas" value={blockDetails?.base_fee_per_gas.toString() ?? "0"} />
+                            <BlockItem
+                                title="Gas Used"
+                                value={blockDetails?.gas_used.toString() ?? '0'}
+                            />
+                            <BlockItem
+                                title="Gas Limit"
+                                value={
+                                    blockDetails?.gas_limit.toString() ?? '0'
+                                }
+                            />
+                            <BlockItem
+                                title="Base fee per gas"
+                                value={
+                                    blockDetails?.base_fee_per_gas.toString() ??
+                                    '0'
+                                }
+                            />
                         </div>
                     </div>
                 </Card>
