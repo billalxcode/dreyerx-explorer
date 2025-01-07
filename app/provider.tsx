@@ -32,7 +32,7 @@ export default function Provider(props: { children: ReactNode }) {
                 className="min-h-screen w-full lg:w-screen md:w-full inset-0 h-full bg-[radial-gradient(#ffffff2e,transparent_1px)] [background-size:16px_16px] relative"
             >
                 <Image
-                    className='absolute inset-0 z-[-10]'
+                    className='fixed inset-0 z-[-10]'
                     src={"/assets/svgs/gradient.svg"}
                     alt='Gradient'
                     width={500}
