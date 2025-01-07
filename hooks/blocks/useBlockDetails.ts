@@ -70,12 +70,7 @@ export default function useBlockDetails(block: string) {
                     const data = await response.json();
                     setBlockDetails(data);
                     setIsLoading(false);
-                })
-                .catch((error) => {
-                    console.error(error);
                 });
-        } catch (error) {
-            console.error(error);
         } finally {
             setIsLoading(false);
         }
