@@ -12,6 +12,7 @@
     },
     "dependencies": {
         "apexcharts": "^4.3.0",
+        "axios": "^1.7.9",
         "date-fns": "^4.1.0",
         "lenis": "^1.1.18",
         "moment": "^2.30.1",

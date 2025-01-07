@@ -1,5 +1,6 @@
 import { get_api_url } from '@/config/api';
 import { useState, useCallback } from 'react';
+import axios from 'axios';
 
 export type Token = {
     circulating_market_cap: string;
@@ -69,17 +70,18 @@ export default function useAddress(address: string) {
         setIsLoading(true);
         
         const url = get_api_url(`/v2/addresses/${address}`);
-
-        fetch(url, {
-            method: "GET",
+        try {
+            const response = await axios.get(url, {
             headers: {
                 "Content-Type": "application/json",
             }
-        }).then(async (response) => {
-            const data = await response.json();
-            setAddressData(data);
-            setIsLoading(false)
-        })
+            });
+            setAddressData(response.data);
+        } catch (error) {
+            console.error('Error fetching address data:', error);
+        } finally {
+            setIsLoading(false);
+        }
     }, [
         address,
     ])

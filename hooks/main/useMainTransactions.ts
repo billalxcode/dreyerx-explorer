@@ -1,5 +1,6 @@
 import { get_api_url } from '@/config/api';
 import { useCallback, useState } from 'react';
+import axios from 'axios';
 
 export type Transaction = {
     timestamp: string;
@@ -137,23 +138,22 @@ export default function useMainTransactions() {
     );
     const [isLoading, setIsLoading] = useState<boolean>(true);
 
-    const handleFetchTransactions = useCallback(() => {
+    const handleFetchTransactions = useCallback(async () => {
         setIsLoading(true);
         const url = get_api_url('/v2/main-page/transactions');
 
-        fetch(url, {
-            method: 'GET',
+        try {
+            const response = await axios.get(url, {
             headers: {
                 accept: 'application/json',
             },
-        })
-            .then(async (response) => {
-                const response_json = await response.json();
-                setTransactions(response_json);
-            })
-            .finally(() => {
-                setIsLoading(false);
             });
+            setTransactions(response.data);
+        } catch (error) {
+            console.error('Error fetching transactions:', error);
+        } finally {
+            setIsLoading(false);
+        }
     }, []);
 
     return {

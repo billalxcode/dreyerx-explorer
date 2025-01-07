@@ -1,6 +1,7 @@
 import { get_api_url } from '@/config/api';
 import { useCallback, useState } from 'react';
 import useMainBlocks from '../main/useMainBlocks';
+import axios from 'axios';
 
 export interface Miner {
     ens_domain_name: string | null;
@@ -64,20 +65,18 @@ export default function useBlocks() {
         const params = `block_number=${startBlock}&items_count=${itemsCount}&type=block`;
         const url = get_api_url(`/v2/blocks?${params}`);
 
-        fetch(url, {
-            method: 'GET',
+        try {
+            const response = await axios.get(url, {
             headers: {
                 'Content-Type': 'application/json',
             },
-        })
-            .then(async (response) => {
-                const data = await response.json();
-                setBlocks(data.items);
-                setIsLoading(false);
-            })
-            .finally(() => {
-                setIsLoading(false);
             });
+            setBlocks(response.data.items);
+        } catch (error) {
+            console.error('Error fetching blocks:', error);
+        } finally {
+            setIsLoading(false);
+        }
     }, [startBlock, handleFetchMainBlocks, getLatestBlock, itemsCount]);
 
     return {

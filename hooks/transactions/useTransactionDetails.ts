@@ -1,5 +1,6 @@
 import { get_api_url } from '@/config/api';
 import { useCallback, useState } from 'react';
+import axios from 'axios';
 
 export type Transaction = {
     message?: string;
@@ -138,21 +139,22 @@ export default function useTransactionDetails(transaction_hash: string) {
         useState<Transaction | null>(null);
     const [isLoading, setIsLoading] = useState(true);
 
-    const handleFetchTransactionDetails = useCallback(() => {
+    const handleFetchTransactionDetails = useCallback(async () => {
         setIsLoading(true);
 
         const url = get_api_url(`/v2/transactions/${transaction_hash}`);
-        fetch(url, {
-            method: 'GET',
+        try {
+            const response = await axios.get(url, {
             headers: {
                 'Content-Type': 'application/json',
             },
-        })
-            .then(async (response) => {
-                const data = await response.json();
-                setTransactionDetails(data);
-                setIsLoading(false);
-            })
+            });
+            setTransactionDetails(response.data);
+        } catch (error) {
+            console.error('Error fetching transaction details:', error);
+        } finally {
+            setIsLoading(false);
+        }
     }, [transaction_hash]);
 
     return {

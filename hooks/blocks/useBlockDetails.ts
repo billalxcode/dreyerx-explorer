@@ -1,5 +1,6 @@
 import { get_api_url } from '@/config/api';
 import { useCallback, useState } from 'react';
+import axios from 'axios';
 
 export type BlockDetails = {
     message?: string;
@@ -58,22 +59,21 @@ export default function useBlockDetails(block: string) {
 
     const handleFetchBlockDetails = useCallback(async () => {
         setIsLoading(true);
-        try {
-            const url = get_api_url('/v2/blocks/' + block);
-            fetch(url, {
-                method: 'GET',
+        
+        const url = get_api_url('/v2/blocks/' + block);
+            try {
+                const response = await axios.get(url, {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-            })
-                .then(async (response) => {
-                    const data = await response.json();
-                    setBlockDetails(data);
-                    setIsLoading(false);
                 });
-        } finally {
-            setIsLoading(false);
-        }
+                setBlockDetails(response.data);
+            } catch (error) {
+                console.error('Error fetching block details:', error);
+            } finally {
+                setIsLoading(false);
+            }
+        
     }, [block]);
 
     return {

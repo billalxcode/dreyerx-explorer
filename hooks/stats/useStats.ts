@@ -1,5 +1,6 @@
 import { get_api_url } from '@/config/api';
 import { useCallback, useState } from 'react';
+import axios from 'axios';
 
 export type Stats = {
     average_block_time: number;
@@ -31,23 +32,21 @@ export default function useStats() {
     const [stats, setStats] = useState<Stats | null>(null);
     const [isLoading, setIsLoading] = useState<boolean>(true);
 
-    const handleFetchStats = useCallback(() => {
+    const handleFetchStats = useCallback(async () => {
         setIsLoading(true);
         const url = get_api_url('/v2/stats');
-
-        fetch(url, {
-            method: 'GET',
+        try {
+            const response = await axios.get(url, {
             headers: {
                 accept: 'application/json',
             },
-        })
-            .then(async (response) => {
-                const response_json = await response.json();
-                setStats(response_json);
-            })
-            .finally(() => {
-                setIsLoading(false);
             });
+            setStats(response.data);
+        } catch (error) {
+            console.error('Failed to fetch stats:', error);
+        } finally {
+            setIsLoading(false);
+        }
     }, []);
 
     return {
