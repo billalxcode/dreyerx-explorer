@@ -1,15 +1,13 @@
 'use client';
 import ReactLenis, { LenisRef } from 'lenis/react';
+import Image from 'next/image';
 import React, {
     ReactNode,
-    useCallback,
     useEffect,
     useRef,
-    useState,
 } from 'react';
 
 export default function Provider(props: { children: ReactNode }) {
-    const [glowPosition, setGlowPosition] = useState({ x: 0, y: 0 });
     const lenisRef = useRef<LenisRef | null>(null);
 
     useEffect(() => {
@@ -17,17 +15,6 @@ export default function Provider(props: { children: ReactNode }) {
             lenisRef.current.lenis?.start();
         }
     });
-
-    const handleMouseMove = useCallback(
-        (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-            const rect = e.currentTarget.getBoundingClientRect();
-            setGlowPosition({
-                x: e.clientX - rect.left,
-                y: e.clientY - rect.top,
-            });
-        },
-        [],
-    );
 
     return (
         <ReactLenis
@@ -42,18 +29,18 @@ export default function Provider(props: { children: ReactNode }) {
             }}
         >
             <div
-                onMouseMove={handleMouseMove}
-                className="min-h-screen w-full lg:w-screen md:w-full inset-0 h-full bg-[radial-gradient(#ffffff2e,transparent_1px)] [background-size:16px_16px]"
+                className="min-h-screen w-full lg:w-screen md:w-full inset-0 h-full bg-[radial-gradient(#ffffff2e,transparent_1px)] [background-size:16px_16px] relative"
             >
-                <div
-                    className="absolute sm:hidden w-[80px] h-[120px] bg-effect-cursor-default blur-[50px] z-[1] pointer-events-none"
-                    style={{
-                        left: `${glowPosition.x - 40}px`,
-                        top: `${glowPosition.y - 60}px`,
-                    }}
+                <Image
+                    className='absolute inset-0 z-[-10]'
+                    src={"/assets/svgs/gradient.svg"}
+                    alt='Gradient'
+                    width={500}
+                    height={500}
                 />
-
-                {props.children}
+                <div className="relative z-1 inset-1">
+                    {props.children}
+                </div>
             </div>
         </ReactLenis>
     );
