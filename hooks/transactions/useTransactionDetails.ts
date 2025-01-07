@@ -153,9 +153,6 @@ export default function useTransactionDetails(transaction_hash: string) {
                 setTransactionDetails(data);
                 setIsLoading(false);
             })
-            .catch((error) => {
-                console.error(error);
-            });
     }, [transaction_hash]);
 
     return {

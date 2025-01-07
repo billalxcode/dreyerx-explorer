@@ -132,26 +132,24 @@ export type Parameter = {
 };
 
 export default function useBlockTransactions(block: string) {
-    const [transactions, setTransactions] = useState<Transaction[] | { message?: string }>([]);
+    const [transactions, setTransactions] = useState<
+        Transaction[] | { message?: string }
+    >([]);
     const [isLoading, setIsLoading] = useState(true);
 
     const handleFetchBlockTransactions = useCallback(() => {
         setIsLoading(true);
-        try {
-            const url = get_api_url(`/v2/blocks/${block}/transactions`);
-            fetch(url, {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-            }).then(async (response) => {
-                const data = await response.json();
-                setTransactions(data.items || { message: data.message });
-                setIsLoading(false);
-            });
-        } catch (error) {
-            console.error('Error fetching block transactions', error);
-        }
+        const url = get_api_url(`/v2/blocks/${block}/transactions`);
+        fetch(url, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        }).then(async (response) => {
+            const data = await response.json();
+            setTransactions(data.items || { message: data.message });
+            setIsLoading(false);
+        });
     }, [block]);
 
     return {
