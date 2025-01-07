@@ -89,7 +89,7 @@ export default function TransactionDetailsContainer(props: {
                                                 : shortenString(transactionDetails?.to.hash ?? "", 10)))
                                     }
                                     valueClassName="font-semibold"
-                                    href={`/addres/${transactionDetails?.transaction_types.includes('contract_creation') ? transactionDetails?.created_contract.hash : transactionDetails?.to.hash}`}
+                                    href={`/address/${transactionDetails?.transaction_types.includes('contract_creation') ? transactionDetails?.created_contract.hash : transactionDetails?.to.hash}`}
                                     isCopiable
                                 />
                             </div>
