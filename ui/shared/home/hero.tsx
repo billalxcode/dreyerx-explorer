@@ -10,6 +10,11 @@ const ReactApexChart = dynamic(() => import('react-apexcharts'), {
 import { ApexOptions } from 'apexcharts';
 import useStatsChartTxs from '@/hooks/stats/useStatsChartTxs';
 import CardEmptyData from '@/ui/components/card/empty';
+import Image from 'next/image';
+import { GrTransaction } from 'react-icons/gr';
+import { HiOutlineCube } from 'react-icons/hi';
+import { IoWalletOutline } from 'react-icons/io5';
+import { BiGasPump } from 'react-icons/bi';
 
 export default function HeroSection() {
     const { stats, handleFetchStats, isLoading } = useStats();
@@ -76,11 +81,13 @@ export default function HeroSection() {
                 <div className="flex flex-row mt-2 gap-2">
                     <div className="flex flex-col gap-2 w-full h-fulll">
                         <HeroItem
+                            icon={<GrTransaction />}
                             title="Transactions"
                             value={stats?.total_transactions.toString() ?? '0'}
                             isLoading={isLoading}
                         />
                         <HeroItem
+                            icon={<HiOutlineCube />}
                             title="Last Blocks"
                             value={stats?.total_blocks.toString() ?? '0'}
                             isLoading={isLoading}
@@ -88,11 +95,13 @@ export default function HeroSection() {
                     </div>
                     <div className="flex flex-col gap-2 w-full h-full">
                         <HeroItem
+                            icon={<BiGasPump />}
                             title="Gas"
                             value={`${stats?.gas_prices.average?.toString() ?? '0'} Gwei`}
                             isLoading={isLoading}
                         />
                         <HeroItem
+                            icon={<IoWalletOutline />}
                             title="Wallet Addresses"
                             value={stats?.total_addresses?.toString() ?? '0'}
                             isLoading={isLoading}
