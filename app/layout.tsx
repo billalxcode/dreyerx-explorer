@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Roboto } from 'next/font/google';
 import './globals.css';
 import Provider from './provider';
+import { Suspense } from 'react';
 
 const roboto = Roboto({
     subsets: ['latin'],
@@ -61,7 +62,9 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body className={`${roboto.className} antialiased text-white/80`}>
-                <Provider>{children}</Provider>
+                <Suspense>
+                    <Provider>{children}</Provider>
+                </Suspense>
             </body>
         </html>
     );
