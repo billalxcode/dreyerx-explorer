@@ -17,7 +17,7 @@ export default {
                     primary: '#FBD2B2',
                 },
                 container: {
-                    default: 'rgba(255, 255, 255, 0.1)',
+                    default: 'rgba(35, 35, 35, 0.5)',
                     hover: 'rgba(255, 255, 255, 0.2)',
                 },
                 effect: {
