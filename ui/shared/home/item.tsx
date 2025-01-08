@@ -5,6 +5,7 @@ import React from 'react';
 export default function HeroItem(props: {
     title: string;
     value: string;
+    prefixValue?: string;
     isLoading?: boolean;
     icon?: React.ReactNode;
 }) {
@@ -19,7 +20,7 @@ export default function HeroItem(props: {
                     {props.isLoading ? (
                         <SkeletonText />
                     ) : (
-                        <p className="font-semibold text-lg">{props.value}</p>
+                        <p className="font-semibold text-lg">{(props.prefixValue ?? "") + props.value}</p>
                     )}
                 </div>
             </div>
