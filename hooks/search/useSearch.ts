@@ -37,6 +37,10 @@ export default function useSearch() {
     const [searchData, setSearchData] = useState<SearchData[] | null>(null);
     const [isLoading, setIsLoading] = useState(false);
 
+    const resetData = useCallback(() => {
+        setSearchData(null)
+    }, [])
+
     const isFirstBlock = useCallback(() => {
         if (searchData && searchData.length > 0) {
             return searchData[0].type === "block";
@@ -72,6 +76,7 @@ export default function useSearch() {
         searchData,
         isLoading,
         isFirstBlock,
+        resetData,
         handleFetchSearch,
     }
 }
