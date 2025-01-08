@@ -4,17 +4,20 @@ import Card from '@/ui/components/card/card';
 import React, { useEffect } from 'react';
 import AddressDetails from './details';
 import useAddressTabCounter from '@/hooks/address/useAddressTabCounter';
+import useAddresTokens from '@/hooks/address/useAddressTokens';
 
 export default function AddressContainer(props: { address: string }) {
     const { address } = props;
 
     const { addressData, handleFetchAddress } = useAddress(address);
     const { addressTabsCounters, handleFetchCounter, } = useAddressTabCounter(address);
+    const { addressTokens, handleFetchAddressTokens } = useAddresTokens(address)
 
     useEffect(() => {
         handleFetchAddress();
         handleFetchCounter();
-    }, [handleFetchAddress, handleFetchCounter]);
+        handleFetchAddressTokens()
+    }, [handleFetchAddress, handleFetchCounter, handleFetchAddressTokens]);
 
     return (
         <>
@@ -26,6 +29,7 @@ export default function AddressContainer(props: { address: string }) {
                     address={address}
                     addressData={addressData}
                     addressTabsCounters={addressTabsCounters}
+                    addressTokens={addressTokens}
                 />
             </Card>
         </>
