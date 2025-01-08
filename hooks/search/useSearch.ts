@@ -3,11 +3,11 @@ import axios from "axios";
 import { useCallback, useState } from "react";
 
 export type AddressData = {
-    address: string;
-    certified: boolean;
-    ens_info: null | string;
-    is_smart_contract_verified: boolean;
-    name: null | string;
+    address?: string;
+    certified?: boolean;
+    ens_info?: null | string;
+    is_smart_contract_verified?: boolean;
+    name?: null | string;
     priority: number;
     type: "address";
     url: string;
@@ -15,18 +15,36 @@ export type AddressData = {
 
 export type TransactionData = {
     priority: number;
-    timestamp: string;
-    transaction_hash: string;
-    tx_hash: string;
+    timestamp?: string;
+    transaction_hash?: string;
+    tx_hash?: string;
     type: "transaction";
     url: string;
 };
+export type BlockData = {
+    block_hash?: string;
+    block_number?: number;
+    block_type?: "block";
+    priority: number;
+    timestamp?: string;
+    type: "block";
+    url: string;
+};
 
-export type SearchData = AddressData | TransactionData;
+export type SearchData = AddressData | TransactionData | BlockData;
 
 export default function useSearch() {
     const [searchData, setSearchData] = useState<SearchData[] | null>(null);
     const [isLoading, setIsLoading] = useState(false);
+
+    const isFirstBlock = useCallback(() => {
+        if (searchData && searchData.length > 0) {
+            return searchData[0].type === "block";
+        }
+        return false;
+    }, [
+        searchData
+    ])
 
     const handleFetchSearch = useCallback(async (query: string) => {
         setIsLoading(true);
@@ -53,6 +71,7 @@ export default function useSearch() {
     return {
         searchData,
         isLoading,
+        isFirstBlock,
         handleFetchSearch,
     }
 }
