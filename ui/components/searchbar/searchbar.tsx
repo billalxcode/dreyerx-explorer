@@ -7,23 +7,27 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { shortenString } from '@/utils/strings';
 import Image from 'next/image';
+import { Router } from 'next/router';
 
 export default function SearchBar() {
     const router = useRouter();
     const [query, setQuery] = useState<string>('');
-    const { searchData, handleFetchSearch, isFirstBlock } = useSearch();
+    const { searchData, handleFetchSearch, isFirstBlock, resetData} = useSearch();
 
     const handleSearch = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-
         handleFetchSearch(query);
     };
-
+    
     useEffect(() => {
         if (searchData && isFirstBlock()) {
             router.replace(searchData[0].url);
         }
-    }, [searchData, isFirstBlock, router]);
+        Router.events.on("routeChangeComplete", () => {
+            setQuery('');
+            resetData()
+        })
+    }, [searchData, isFirstBlock, router, resetData]);
 
     return (
         <div className="relative w-full">
