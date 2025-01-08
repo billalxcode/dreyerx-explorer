@@ -28,7 +28,6 @@ export default function HeroSection() {
     const {
         data: marketData,
         isLoading: marketLoading,
-        calculateMarketcap,
         handleFetchMarketOverview,
     } = useMarketOverview()
 
@@ -93,7 +92,7 @@ export default function HeroSection() {
                         }
                         title='Price'
                         prefixValue='$'
-                        value={marketData?.token.market.price.value.toFixed(5) ?? '0'}
+                        value={marketData?.usd.toFixed(5) ?? "0"}
                         isLoading={marketLoading}
                     />
                     <HeroItem 
@@ -102,7 +101,7 @@ export default function HeroSection() {
                         }
                         title='Marketcap'
                         prefixValue='$'
-                        value={calculateMarketcap().toFixed(5)}
+                        value={marketData?.usd_market_cap.toFixed(2) ?? '0'}
                         isLoading={marketLoading}
                     />
                 </div>
