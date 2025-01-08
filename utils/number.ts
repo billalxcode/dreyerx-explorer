@@ -3,3 +3,9 @@ export function weiToEther(wei: string): string {
     const ether = parseFloat(wei) / weiInEther;
     return ether.toFixed(2);
 }
+
+export function weiToFormattedDecimals(wei: string, decimals: number): string {
+    const weiInEther = 10 ** decimals;
+    const ether = parseFloat(wei) / weiInEther;
+    return ether.toFixed(2);
+}
