@@ -9,7 +9,7 @@ export default function AddressContainer(props: { address: string }) {
     const { address } = props;
 
     const { addressData, handleFetchAddress } = useAddress(address);
-    const { handleFetchCounter, addressTabsCounters } = useAddressTabCounter(address);
+    const { addressTabsCounters, handleFetchCounter, } = useAddressTabCounter(address);
 
     useEffect(() => {
         handleFetchAddress();
