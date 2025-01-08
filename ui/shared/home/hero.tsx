@@ -10,7 +10,6 @@ const ReactApexChart = dynamic(() => import('react-apexcharts'), {
 import { ApexOptions } from 'apexcharts';
 import useStatsChartTxs from '@/hooks/stats/useStatsChartTxs';
 import CardEmptyData from '@/ui/components/card/empty';
-import Image from 'next/image';
 import { GrTransaction } from 'react-icons/gr';
 import { HiOutlineCube } from 'react-icons/hi';
 import { IoWalletOutline } from 'react-icons/io5';
