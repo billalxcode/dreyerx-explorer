@@ -101,7 +101,7 @@ export default function HeroSection() {
                         />
                         <HeroItem
                             icon={<IoWalletOutline />}
-                            title="Wallet Addresses"
+                            title="Accounts"
                             value={stats?.total_addresses?.toString() ?? '0'}
                             isLoading={isLoading}
                         />
