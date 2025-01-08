@@ -10,10 +10,12 @@ const ReactApexChart = dynamic(() => import('react-apexcharts'), {
 import { ApexOptions } from 'apexcharts';
 import useStatsChartTxs from '@/hooks/stats/useStatsChartTxs';
 import CardEmptyData from '@/ui/components/card/empty';
-import { GrTransaction } from 'react-icons/gr';
+import { GrPieChart, GrTransaction } from 'react-icons/gr';
 import { HiOutlineCube } from 'react-icons/hi';
 import { IoWalletOutline } from 'react-icons/io5';
 import { BiGasPump } from 'react-icons/bi';
+import { FaDollarSign } from 'react-icons/fa6';
+import useMarketOverview from '@/hooks/market/useMarketOverview';
 
 export default function HeroSection() {
     const { stats, handleFetchStats, isLoading } = useStats();
@@ -23,6 +25,12 @@ export default function HeroSection() {
         transactionCounts,
         isLoading: isChartLoading,
     } = useStatsChartTxs();
+    const {
+        data: marketData,
+        isLoading: marketLoading,
+        calculateMarketcap,
+        handleFetchMarketOverview,
+    } = useMarketOverview()
 
     const chartOptions: ApexOptions = {
         series: [
@@ -72,13 +80,36 @@ export default function HeroSection() {
     useEffect(() => {
         handleFetchStats();
         handleFetchChartTxs();
-    }, [handleFetchStats, handleFetchChartTxs]);
+        handleFetchMarketOverview()
+    }, [handleFetchStats, handleFetchChartTxs, handleFetchMarketOverview]);
 
     return (
         <div className="flex flex-col lg:flex-row gap-2 w-full">
+            <Card title='Market ETH Overview' className="w-full">
+                <div className="flex flex-col mt-2 gap-2">
+                    <HeroItem 
+                        icon={
+                            <FaDollarSign />
+                        }
+                        title='Price'
+                        prefixValue='$'
+                        value={marketData?.token.market.price.value.toFixed(5) ?? '0'}
+                        isLoading={marketLoading}
+                    />
+                    <HeroItem 
+                        icon={
+                            <GrPieChart />
+                        }
+                        title='Marketcap'
+                        prefixValue='$'
+                        value={calculateMarketcap().toFixed(5)}
+                        isLoading={marketLoading}
+                    />
+                </div>
+            </Card>
             <Card title="Network Info" className="w-full">
                 <div className="flex flex-row mt-2 gap-2">
-                    <div className="flex flex-col gap-2 w-full h-fulll">
+                    <div className="flex flex-col gap-2 w-full h-full">
                         <HeroItem
                             icon={<GrTransaction />}
                             title="Transactions"
