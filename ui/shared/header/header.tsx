@@ -37,7 +37,7 @@ export default function Header() {
                 <FaBars onClick={toggleMenu} className="cursor-pointer" />
             </div>
 
-            <div className="hidden lg:gap-20 lg:flex lg:justify-between lg:items-center">
+            <div className="hidden lg:gap-5 lg:flex lg:justify-between lg:items-center">
                 <HeaderMenu />
                 <HeaderNetworkSelect />
             </div>
