@@ -30,7 +30,7 @@ export default function BlockDetails(props: { block: string }) {
                             <div className="flex flex-col gap-2">
                                 <BlockItem
                                     title="Block Hash"
-                                    value={props.block}
+                                    value={blockDetails?.height.toString() ?? "0"}
                                 />
                                 <BlockItem
                                     title="Timestamp"
