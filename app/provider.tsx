@@ -32,7 +32,7 @@ export default function Provider(props: { children: ReactNode }) {
                     width={500}
                     height={500}
                 />
-                <div className="relative z-1 inset-1">{props.children}</div>
+                <div className="flex flex-col gap-5 z-1 inset-1">{props.children}</div>
             </div>
         </ReactLenis>
     );
