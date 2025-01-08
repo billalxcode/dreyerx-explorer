@@ -8,9 +8,10 @@ export default function HeaderMenu() {
             {navigations.map((nav, index) => {
                 return (
                     <li
-                        className="cursor-pointer transition duration-300 p-4"
+                        className="cursor-pointer transition duration-300 p-4 flex flex-row gap-2 items-center"
                         key={index}
                     >
+                        {nav.icon && <nav.icon size={26} className='p-1 bg-gradient-to-br from-purple-500 to-purple-700 rounded-lg' />}
                         <Link href={nav.link} target={''}>
                             {nav.name}
                         </Link>
