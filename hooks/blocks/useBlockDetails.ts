@@ -59,21 +59,20 @@ export default function useBlockDetails(block: string) {
 
     const handleFetchBlockDetails = useCallback(async () => {
         setIsLoading(true);
-        
+
         const url = get_api_url('/v2/blocks/' + block);
-            try {
-                const response = await axios.get(url, {
+        try {
+            const response = await axios.get(url, {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                });
-                setBlockDetails(response.data);
-            } catch (error) {
-                console.error('Error fetching block details:', error);
-            } finally {
-                setIsLoading(false);
-            }
-        
+            });
+            setBlockDetails(response.data);
+        } catch (error) {
+            console.error('Error fetching block details:', error);
+        } finally {
+            setIsLoading(false);
+        }
     }, [block]);
 
     return {

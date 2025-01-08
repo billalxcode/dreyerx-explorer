@@ -143,9 +143,9 @@ export default function useBlockTransactions(block: string) {
         const url = get_api_url(`/v2/blocks/${block}/transactions`);
         try {
             const response = await axios.get(url, {
-            headers: {
-                'Content-Type': 'application/json',
-            },
+                headers: {
+                    'Content-Type': 'application/json',
+                },
             });
             const data = response.data;
             setTransactions(data.items || { message: data.message });

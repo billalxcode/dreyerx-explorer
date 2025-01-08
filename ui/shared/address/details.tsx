@@ -16,7 +16,7 @@ export default function AddressDetails(props: {
                         title="Balance"
                         value={props.addressData?.coin_balance}
                     />
-                    <AddressItem title='Transaction Sent' value='' />
+                    <AddressItem title="Transaction Sent" value="" />
                 </div>
             </div>
         </Card>

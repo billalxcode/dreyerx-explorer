@@ -9,7 +9,7 @@ export default function TransactionDetailsData(props: {
     transaction: Transaction | null;
 }) {
     return (
-        <Card title="Data" className='w-full'>
+        <Card title="Data" className="w-full">
             <div className="flex flex-col gap-4 mt-2 w-full">
                 <div className="flex flex-col w-full">
                     <h2 className="text-white/50 text-sm">Call</h2>
@@ -18,7 +18,7 @@ export default function TransactionDetailsData(props: {
                             'unknown'}
                     </p>
                 </div>
-                <TableContainer className='w-full'>
+                <TableContainer className="w-full">
                     <thead>
                         <tr>
                             <TableHeaderCol className="w-16">#</TableHeaderCol>

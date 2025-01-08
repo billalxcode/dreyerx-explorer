@@ -144,9 +144,9 @@ export default function useMainTransactions() {
 
         try {
             const response = await axios.get(url, {
-            headers: {
-                accept: 'application/json',
-            },
+                headers: {
+                    accept: 'application/json',
+                },
             });
             setTransactions(response.data);
         } catch (error) {

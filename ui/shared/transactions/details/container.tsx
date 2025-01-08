@@ -20,20 +20,22 @@ export default function TransactionDetailsContainer(props: {
         handleFetchTransactionDetails();
     }, [handleFetchTransactionDetails]);
     return (
-        <Card title="Transaction Details" className='w-full'>
+        <Card title="Transaction Details" className="w-full">
             {isLoading ? (
                 <SkeletonCard className="mt-2" />
             ) : (
                 <Card className="mt-2 w-full">
-                    {
-                        transactionDetails?.message ? (
-                            <CardEmptyData message='Transaction not found' />
-                        ) : (
+                    {transactionDetails?.message ? (
+                        <CardEmptyData message="Transaction not found" />
+                    ) : (
                         <div className="flex flex-col gap-4 divide-y w-full divide-border-normal overflow-x-auto lg:overflow-x-hidden">
                             <div className="flex flex-col gap-4">
                                 <TransactionItem
                                     title="Transaction Hash"
-                                    value={shortenString(transactionDetails?.hash ?? "", 10)}
+                                    value={shortenString(
+                                        transactionDetails?.hash ?? '',
+                                        10,
+                                    )}
                                     isCopiable
                                 />
                                 <TransactionItem title="Timestamp">
@@ -53,12 +55,15 @@ export default function TransactionDetailsContainer(props: {
                                 <TransactionItem
                                     title="Block"
                                     value={
-                                        transactionDetails?.block.toString() ?? '0'
+                                        transactionDetails?.block.toString() ??
+                                        '0'
                                     }
                                 />
                                 <TransactionItem title="Status">
                                     {transactionDetails?.status === 'ok' ? (
-                                        <p className="text-green-500">Success</p>
+                                        <p className="text-green-500">
+                                            Success
+                                        </p>
                                     ) : (
                                         <p className="text-red-500">
                                             Failed with{' '}
@@ -69,8 +74,12 @@ export default function TransactionDetailsContainer(props: {
                                 <TransactionItem
                                     title="From"
                                     value={
-                                        transactionDetails?.from.ens_domain_name ??
-                                        shortenString(transactionDetails?.from.hash ?? "", 10)
+                                        transactionDetails?.from
+                                            .ens_domain_name ??
+                                        shortenString(
+                                            transactionDetails?.from.hash ?? '',
+                                            10,
+                                        )
                                     }
                                     valueClassName="font-semibold"
                                     href={`/address/${transactionDetails?.from.hash}`}
@@ -82,11 +91,16 @@ export default function TransactionDetailsContainer(props: {
                                         transactionDetails?.to == null
                                             ? 'Contract Creation'
                                             : (transactionDetails?.to
-                                                .ens_domain_name ??
-                                            (transactionDetails?.to.is_contract &&
-                                            transactionDetails.to.is_verified
-                                                ? transactionDetails?.to.name
-                                                : shortenString(transactionDetails?.to.hash ?? "", 10)))
+                                                  .ens_domain_name ??
+                                              (transactionDetails?.to
+                                                  .is_contract &&
+                                              transactionDetails.to.is_verified
+                                                  ? transactionDetails?.to.name
+                                                  : shortenString(
+                                                        transactionDetails?.to
+                                                            .hash ?? '',
+                                                        10,
+                                                    )))
                                     }
                                     valueClassName="font-semibold"
                                     href={`/address/${transactionDetails?.transaction_types.includes('contract_creation') ? transactionDetails?.created_contract.hash : transactionDetails?.to.hash}`}
@@ -98,7 +112,8 @@ export default function TransactionDetailsContainer(props: {
                                     <div className="flex gap-2 items-center">
                                         <p>
                                             {weiToEther(
-                                                transactionDetails?.value ?? '0',
+                                                transactionDetails?.value ??
+                                                    '0',
                                             )}
                                         </p>
                                         <div className="text-white/50 text-sm">
@@ -123,7 +138,8 @@ export default function TransactionDetailsContainer(props: {
                                 <TransactionItem
                                     title="Nonce"
                                     value={
-                                        transactionDetails?.nonce.toString() ?? '0'
+                                        transactionDetails?.nonce.toString() ??
+                                        '0'
                                     }
                                 />
                             </div>
@@ -133,8 +149,7 @@ export default function TransactionDetailsContainer(props: {
                                 />
                             ) : null}
                         </div>
-                        )
-                    }
+                    )}
                 </Card>
             )}
         </Card>

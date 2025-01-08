@@ -145,9 +145,9 @@ export default function useTransactionDetails(transaction_hash: string) {
         const url = get_api_url(`/v2/transactions/${transaction_hash}`);
         try {
             const response = await axios.get(url, {
-            headers: {
-                'Content-Type': 'application/json',
-            },
+                headers: {
+                    'Content-Type': 'application/json',
+                },
             });
             setTransactionDetails(response.data);
         } catch (error) {

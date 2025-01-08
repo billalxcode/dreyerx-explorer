@@ -13,19 +13,18 @@ export default function useStatsChartTxs() {
 
         try {
             const response = await axios.get(url, {
-            headers: {
-                'Content-Type': 'application/json',
-            },
+                headers: {
+                    'Content-Type': 'application/json',
+                },
             });
 
             const response_json = response.data;
 
             const labels = response_json.chart_data.map(
-            (data: { date: string }) => data.date,
+                (data: { date: string }) => data.date,
             );
             const transactionCounts = response_json.chart_data.map(
-            (data: { transaction_count: string }) =>
-                data.transaction_count,
+                (data: { transaction_count: string }) => data.transaction_count,
             );
 
             setLabels(labels);

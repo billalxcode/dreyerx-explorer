@@ -22,7 +22,12 @@ export default function Header() {
     return (
         <div className="flex justify-between items-center w-full p-4 select-none px-4 lg:px-8">
             <div className="flex gap-2 items-center">
-                <Image src={"/assets/logo.png"} alt='DreyerX Logo' width={26} height={26} />
+                <Image
+                    src={'/assets/logo.png'}
+                    alt="DreyerX Logo"
+                    width={26}
+                    height={26}
+                />
                 <Link href={'/'} className="font-bold text-sm">
                     DREYERX EXPLORER
                 </Link>

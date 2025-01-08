@@ -59,9 +59,9 @@ export default function useMainBlocks() {
 
         try {
             const response = await axios.get(url, {
-            headers: {
-                accept: 'application/json',
-            },
+                headers: {
+                    accept: 'application/json',
+                },
             });
             setBlocks(response.data);
         } catch (error) {

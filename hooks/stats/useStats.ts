@@ -37,9 +37,9 @@ export default function useStats() {
         const url = get_api_url('/v2/stats');
         try {
             const response = await axios.get(url, {
-            headers: {
-                accept: 'application/json',
-            },
+                headers: {
+                    accept: 'application/json',
+                },
             });
             setStats(response.data);
         } catch (error) {

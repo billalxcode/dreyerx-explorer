@@ -17,17 +17,21 @@ export default function BlockDetails(props: { block: string }) {
 
     return (
         <Card title="Block Details" className="w-full">
-            <div className={`flex flex-col gap-2 mt-2 w-full justify-center ${blockDetails?.message ? 'min-h-64' : 'h-full'}`}>
+            <div
+                className={`flex flex-col gap-2 mt-2 w-full justify-center ${blockDetails?.message ? 'min-h-64' : 'h-full'}`}
+            >
                 {isLoading ? (
                     <SkeletonCard />
+                ) : blockDetails?.message ? (
+                    <CardEmptyData message={blockDetails.message} />
                 ) : (
-                    blockDetails?.message ? (
-                        <CardEmptyData message={blockDetails.message} />
-                    ) : (
                     <Card className="mt-2">
                         <div className="flex flex-col gap-4 divide-y divide-border-normal">
                             <div className="flex flex-col gap-2">
-                                <BlockItem title="Block Hash" value={props.block} />
+                                <BlockItem
+                                    title="Block Hash"
+                                    value={props.block}
+                                />
                                 <BlockItem
                                     title="Timestamp"
                                     value={formatDistance(
@@ -57,12 +61,15 @@ export default function BlockDetails(props: { block: string }) {
                             <div className="flex flex-col gap-2 py-4">
                                 <BlockItem
                                     title="Gas Used"
-                                    value={blockDetails?.gas_used.toString() ?? '0'}
+                                    value={
+                                        blockDetails?.gas_used.toString() ?? '0'
+                                    }
                                 />
                                 <BlockItem
                                     title="Gas Limit"
                                     value={
-                                        blockDetails?.gas_limit.toString() ?? '0'
+                                        blockDetails?.gas_limit.toString() ??
+                                        '0'
                                     }
                                 />
                                 <BlockItem
@@ -75,7 +82,6 @@ export default function BlockDetails(props: { block: string }) {
                             </div>
                         </div>
                     </Card>
-                    )
                 )}
             </div>
         </Card>

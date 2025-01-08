@@ -154,9 +154,9 @@ export default function useTransactions() {
 
         try {
             const response = await axios.get(url, {
-            headers: {
-                'Content-Type': 'application/json',
-            },
+                headers: {
+                    'Content-Type': 'application/json',
+                },
             });
             setTransactions(response.data.items);
         } catch (error) {

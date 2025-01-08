@@ -65,16 +65,16 @@ export type AddressData = {
 export default function useAddress(address: string) {
     const [addressData, setAddressData] = useState<AddressData | null>(null);
     const [isLoading, setIsLoading] = useState(false);
-    
+
     const handleFetchAddress = useCallback(async () => {
         setIsLoading(true);
-        
+
         const url = get_api_url(`/v2/addresses/${address}`);
         try {
             const response = await axios.get(url, {
-            headers: {
-                "Content-Type": "application/json",
-            }
+                headers: {
+                    'Content-Type': 'application/json',
+                },
             });
             setAddressData(response.data);
         } catch (error) {
@@ -82,9 +82,7 @@ export default function useAddress(address: string) {
         } finally {
             setIsLoading(false);
         }
-    }, [
-        address,
-    ])
+    }, [address]);
 
     return {
         addressData,
