@@ -1,6 +1,7 @@
 import Container from '@/ui/components/container/container';
 import SearchBar from '@/ui/components/searchbar/searchbar';
 import BlockDetailsContainer from '@/ui/shared/blocks/details/container';
+import Footer from '@/ui/shared/footer/footer';
 import Header from '@/ui/shared/header/header';
 import React from 'react';
 
@@ -17,6 +18,8 @@ export default async function Page(props: {
 
                 <BlockDetailsContainer block={block} />
             </Container>
+
+            <Footer />
         </>
     );
 }

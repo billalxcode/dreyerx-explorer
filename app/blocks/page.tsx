@@ -1,6 +1,7 @@
 import Container from '@/ui/components/container/container';
 import SearchBar from '@/ui/components/searchbar/searchbar';
 import BlocksContainer from '@/ui/shared/blocks/container';
+import Footer from '@/ui/shared/footer/footer';
 import Header from '@/ui/shared/header/header';
 import React from 'react';
 
@@ -13,6 +14,8 @@ export default function Page() {
                 <SearchBar />
                 <BlocksContainer />
             </Container>
+
+            <Footer />
         </>
     );
 }

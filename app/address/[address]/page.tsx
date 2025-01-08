@@ -1,6 +1,7 @@
 import Container from '@/ui/components/container/container';
 import SearchBar from '@/ui/components/searchbar/searchbar';
 import AddressContainer from '@/ui/shared/address/container';
+import Footer from '@/ui/shared/footer/footer';
 import Header from '@/ui/shared/header/header';
 import React from 'react';
 
@@ -17,6 +18,8 @@ export default async function Page(props: {
 
                 <AddressContainer address={address} />
             </Container>
+
+            <Footer />
         </>
     );
 }
