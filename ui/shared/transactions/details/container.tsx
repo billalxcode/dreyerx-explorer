@@ -103,7 +103,7 @@ export default function TransactionDetailsContainer(props: {
                                                     )))
                                     }
                                     valueClassName="font-semibold"
-                                    href={`/address/${transactionDetails?.transaction_types.includes('contract_creation') ? transactionDetails?.created_contract.hash : transactionDetails?.to.hash}`}
+                                    href={`/address/${transactionDetails?.tx_types.includes('contract_creation') ? transactionDetails?.created_contract.hash : transactionDetails?.to.hash}`}
                                     isCopiable
                                 />
                             </div>

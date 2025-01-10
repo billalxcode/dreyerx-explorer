@@ -22,7 +22,7 @@ export type Transaction = {
     base_fee_per_gas: string;
     from: Address;
     token_transfers: TokenTransfer[];
-    transaction_types: string[];
+    tx_types: string[];
     gas_used: string;
     created_contract: Address;
     position: number;

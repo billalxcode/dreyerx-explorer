@@ -32,7 +32,7 @@ export default function TransactionItem(props: { transaction: Transaction }) {
                     <div className="flex gap-2 justify-self-start mr-auto">
                         <h4 className="text-sm font-semibold">To:</h4>
                         <p className="text-sm text-text-primary font-semibold">
-                            {props.transaction.transaction_types.includes(
+                            {props.transaction.tx_types && props.transaction.tx_types.includes(
                                 'contract_creation',
                             )
                                 ? 'Contract Creation'
