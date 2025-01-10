@@ -23,7 +23,7 @@ export default function TransactionItem(props: { transaction: Transaction }) {
                     <div className="flex gap-2">
                         <h4 className="text-sm font-semibold">From:</h4>
                         <Link
-                            href={`/addr/${props.transaction.from.hash}`}
+                            href={`/address/${props.transaction.from.hash}`}
                             className="text-sm text-text-primary font-semibold"
                         >
                             {shortenString(props.transaction.from.hash, 10)}
