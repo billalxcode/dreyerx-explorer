@@ -10,7 +10,8 @@ export type AddressData = {
     name?: null | string;
     priority: number;
     type: "address";
-    url: string;
+    url?: string;
+    address_url?: string;
 };
 
 export type TransactionData = {
