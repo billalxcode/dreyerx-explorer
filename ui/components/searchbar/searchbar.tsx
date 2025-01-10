@@ -20,7 +20,7 @@ export default function SearchBar() {
     };
     
     useEffect(() => {
-        if (searchData && isFirstBlock()) {
+        if (searchData && isFirstBlock() && searchData[0].url) {
             router.replace(searchData[0].url);
         }
         Router.events.on("routeChangeComplete", () => {
@@ -85,7 +85,7 @@ export default function SearchBar() {
                             <div className="flex flex-col gap-2 divide-y divide-border-normal">
                                 {searchData.map((search, index) => (
                                     <Link
-                                        href={search.url}
+                                        href={search.url || (search.type == "address" ? search.address_url ?? "" : "")}
                                         key={index}
                                         className="text-white/50 text-sm p-2"
                                     >
